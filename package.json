@@ -2,7 +2,7 @@
   "name": "ruby",
   "displayName": "Ruby",
   "description": "An auto-configured set of extensions for working with Ruby",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "publisher": "Shopify",
   "repository": {
     "type": "git",
@@ -32,7 +32,7 @@
     "lint": "eslint '**/*.ts' && prettier '**/*.{json,md,yaml,yml}' --check",
     "test": "node ./out/test/runTest.js",
     "package": "vsce package --out vscode-shopify-ruby.vsix",
-    "vscode:prepublish": "yarn run esbuild-base -- --minify",
+    "vscode:prepublish": "yarn run esbuild-base --minify",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node"
   },
   "devDependencies": {
