@@ -29,3 +29,16 @@ To automatically fix prettier and eslint errors on save, install the official es
 ### Debugging
 
 Interactive debugging works for both running the extension or tests. In the debug panel, select whether to run the extension in development mode or run tests, set up some breakpoints and start with F5.
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/Shopify/vscode-shopify-ruby.
+This project is intended to be a safe, welcoming space for collaboration, and contributors
+are expected to adhere to the
+[Contributor Covenant](https://github.com/Shopify/vscode-shopify-ruby/blob/main/CODE_OF_CONDUCT.md)
+code of conduct.
+
+## License
+
+The extension is available as open source under the terms of the
+[MIT License](https://github.com/Shopify/vscode-shopify-ruby/blob/main/LICENSE.txt).
