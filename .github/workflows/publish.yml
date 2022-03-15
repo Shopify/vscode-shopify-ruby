@@ -11,23 +11,18 @@ jobs:
         name: Checkout
 
       - uses: actions/setup-node@v2
-        name: Use Node.js 16.x
+        name: Use Node.js 17.x
         with:
-          node-version: "16"
+          node-version: "17"
           cache: "yarn"
 
       - name: 📦 Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: 💅🏼 Lint
-        run: yarn lint
-
       - name: 🔨 Package
         run: yarn vsce package
 
-      - name: Upload assets to release
-        uses: Shopify/upload-to-release@master
-        with:
-          name: vscode-shopify-ruby.vsix
-          path: vscode-shopify-ruby.vsix
-          repo-token: ${{secrets.GITHUB_TOKEN }}
+      - name: Publish extension in the marketplace
+        run: node_modules/.bin/vsce publish --packagePath vscode-shopify-ruby.vsix
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
