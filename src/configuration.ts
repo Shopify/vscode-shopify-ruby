@@ -32,6 +32,17 @@ export interface ConfigurationEntry {
       | undefined,
     overrideInLanguage?: boolean | undefined
   ): Thenable<void>;
+
+  inspect(section: string):
+    | {
+        globalValue?: any;
+        workspaceValue?: any;
+        workspaceFolderValue?: any;
+        globalLanguageValue?: any;
+        workspaceLanguageValue?: any;
+        workspaceFolderLanguageValue?: any;
+      }
+    | undefined;
 }
 
 export interface ConfigurationStore {
@@ -48,10 +59,27 @@ export class Configuration {
     this.configurationStore = configurationStore;
   }
 
-  applyDefaults() {
+  applyDefaults(force = false) {
     DEFAULT_CONFIGS.forEach(({ scope, section, name, value }) => {
       const config = this.configurationStore.getConfiguration(section, scope);
-      config.update(name, value, true, true);
+
+      if (force || this.missingSetting(config, name)) {
+        config.update(name, value, true, true);
+      }
     });
+  }
+
+  private missingSetting(config: ConfigurationEntry, name: string): boolean {
+    const existingConfig = config.inspect(name);
+
+    return (
+      existingConfig !== undefined &&
+      existingConfig.globalValue === undefined &&
+      existingConfig.workspaceValue === undefined &&
+      existingConfig.workspaceFolderValue === undefined &&
+      existingConfig.globalLanguageValue === undefined &&
+      existingConfig.workspaceLanguageValue === undefined &&
+      existingConfig.workspaceFolderLanguageValue === undefined
+    );
   }
 }

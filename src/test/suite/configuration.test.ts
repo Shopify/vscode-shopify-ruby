@@ -37,6 +37,9 @@ class FakeStore implements ConfigurationStore {
       ) => {
         return (this.storage[`${section}.${name}`] = value);
       },
+      inspect: (_name: string) => {
+        return {};
+      },
     };
   }
 }
