@@ -52,34 +52,107 @@ export interface ConfigurationStore {
   ): ConfigurationEntry;
 }
 
+const CANCELLED_OVERRIDES_KEY = "shopify.ruby.cancelled_overrides";
+
 export class Configuration {
   private configurationStore;
+  private context;
 
-  constructor(configurationStore: ConfigurationStore) {
+  constructor(
+    configurationStore: ConfigurationStore,
+    context: vscode.ExtensionContext
+  ) {
     this.configurationStore = configurationStore;
+    this.context = context;
   }
 
   applyDefaults(force = false) {
-    DEFAULT_CONFIGS.forEach(({ scope, section, name, value }) => {
+    DEFAULT_CONFIGS.forEach(async ({ scope, section, name, value }) => {
       const config = this.configurationStore.getConfiguration(section, scope);
 
-      if (force || this.missingSetting(config, name)) {
+      if (force || (await this.checkMissingSetting(config, name, value))) {
         config.update(name, value, true, true);
       }
     });
   }
 
-  private missingSetting(config: ConfigurationEntry, name: string): boolean {
+  private async checkMissingSetting(
+    config: ConfigurationEntry,
+    name: string,
+    value: any
+  ): Promise<boolean> {
+    // If the user cancelled the override, don't prompt again
+    if (this.context.workspaceState.get(`${CANCELLED_OVERRIDES_KEY}.${name}`)) {
+      return false;
+    }
+
     const existingConfig = config.inspect(name);
 
-    return (
-      existingConfig !== undefined &&
-      existingConfig.globalValue === undefined &&
-      existingConfig.workspaceValue === undefined &&
-      existingConfig.workspaceFolderValue === undefined &&
-      existingConfig.globalLanguageValue === undefined &&
-      existingConfig.workspaceLanguageValue === undefined &&
-      existingConfig.workspaceFolderLanguageValue === undefined
+    // If the value configured already matches the default, don't prompt
+    if (
+      existingConfig &&
+      (existingConfig.globalValue === value ||
+        existingConfig.globalLanguageValue === value)
+    ) {
+      return false;
+    }
+
+    // If the global value is set and is different, scope per language or not, prompt to override
+    if (
+      existingConfig &&
+      (this.valuesAreDifferent(existingConfig.globalValue, value) ||
+        this.valuesAreDifferent(existingConfig.globalLanguageValue, value))
+    ) {
+      return this.promptOverride(
+        `The existing configuration for ${name} doesn't match our suggested default`,
+        name
+      );
+    }
+
+    // If the workspace value is set and is different, scope per language or not, prompt to override
+    if (
+      existingConfig &&
+      (this.valuesAreDifferent(existingConfig.workspaceValue, value) ||
+        this.valuesAreDifferent(existingConfig.workspaceFolderValue, value) ||
+        this.valuesAreDifferent(existingConfig.workspaceLanguageValue, value) ||
+        this.valuesAreDifferent(
+          existingConfig.workspaceFolderLanguageValue,
+          value
+        ))
+    ) {
+      return this.promptOverride(
+        `The existing workspace configuration for ${name} doesn't match our suggested default`,
+        name
+      );
+    }
+
+    return this.promptOverride(
+      `No configuration found for ${name}. Would you like to apply the suggested default?`,
+      name
     );
+  }
+
+  private async promptOverride(
+    message: string,
+    name: string
+  ): Promise<boolean> {
+    const response = await vscode.window.showInformationMessage(
+      message,
+      "Override",
+      "Cancel"
+    );
+
+    if (response === "Cancel") {
+      this.context.workspaceState.update(
+        `${CANCELLED_OVERRIDES_KEY}.${name}`,
+        true
+      );
+    }
+
+    return response === "Override";
+  }
+
+  private valuesAreDifferent(config: any, value: any) {
+    return config !== undefined && config !== value;
   }
 }

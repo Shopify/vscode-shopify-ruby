@@ -8,7 +8,7 @@ export async function activate(context: vscode.ExtensionContext) {
   vscode.extensions.getExtension("shopify.vscode-shadowenv")?.activate();
   vscode.commands.executeCommand("rubocop-lsp.restart");
 
-  const configuration = new Configuration(vscode.workspace);
+  const configuration = new Configuration(vscode.workspace, context);
   configuration.applyDefaults();
 
   context.subscriptions.push(
