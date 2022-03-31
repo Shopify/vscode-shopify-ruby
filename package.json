@@ -23,6 +23,14 @@
     "Shopify.rubocop-lsp",
     "Shopify.vscode-shadowenv"
   ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ruby.force_apply_defaults",
+        "title": "Ruby: Force apply defaults"
+      }
+    ]
+  },
   "main": "./out/extension.js",
   "scripts": {
     "format": "eslint '**/*.ts' --fix && prettier '**/*.{json,md,yaml,yml}' --write",

@@ -37,15 +37,23 @@ class FakeStore implements ConfigurationStore {
       ) => {
         return (this.storage[`${section}.${name}`] = value);
       },
+      inspect: (_name: string) => {
+        return {};
+      },
     };
   }
 }
 
 suite("Configuration suite", () => {
   test("automatic configuration sets defaults", () => {
+    const context = {
+      workspaceState: {
+        get: (_name) => undefined,
+      },
+    } as vscode.ExtensionContext;
     const store = new FakeStore();
-    const config = new Configuration(store);
-    config.applyDefaults();
+    const config = new Configuration(store, context);
+    config.applyDefaults(true);
 
     DEFAULT_CONFIGS.forEach(({ section, name, value }) => {
       assert.strictEqual(store.get(section, name), value);
