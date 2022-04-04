@@ -53,10 +53,18 @@ export interface ConfigurationStore {
 }
 
 const CANCELLED_OVERRIDES_KEY = "shopify.ruby.cancelled_overrides";
+const APPROVED_ALL_OVERRIDES_KEY = "shopify.ruby.approved_all_overrides";
+
+export enum OverridesStatus {
+  ApprovedAll = "approvedAll",
+  ApproveEach = "approveEach",
+  Cancel = "cancel",
+}
 
 export class Configuration {
-  private configurationStore;
-  private context;
+  private configurationStore: ConfigurationStore;
+  private context: vscode.ExtensionContext;
+  private overrideStatus: OverridesStatus | undefined;
 
   constructor(
     configurationStore: ConfigurationStore,
@@ -64,13 +72,28 @@ export class Configuration {
   ) {
     this.configurationStore = configurationStore;
     this.context = context;
+    this.overrideStatus = context.globalState.get(APPROVED_ALL_OVERRIDES_KEY);
   }
 
-  applyDefaults(force = false) {
+  async applyDefaults(force = false) {
+    if (this.overrideStatus === undefined || force) {
+      this.overrideStatus = await this.promptOverrideStatus();
+    }
+
+    if (this.overrideStatus === OverridesStatus.Cancel) {
+      return;
+    }
+
+    const canOverride = this.overrideStatus === OverridesStatus.ApprovedAll;
+
     DEFAULT_CONFIGS.forEach(async ({ scope, section, name, value }) => {
       const config = this.configurationStore.getConfiguration(section, scope);
 
-      if (force || (await this.checkMissingSetting(config, name, value))) {
+      if (
+        force ||
+        canOverride ||
+        (await this.checkMissingSetting(config, name, value))
+      ) {
         config.update(name, value, true, true);
       }
     });
@@ -82,7 +105,7 @@ export class Configuration {
     value: any
   ): Promise<boolean> {
     // If the user cancelled the override, don't prompt again
-    if (this.context.workspaceState.get(`${CANCELLED_OVERRIDES_KEY}.${name}`)) {
+    if (this.context.globalState.get(`${CANCELLED_OVERRIDES_KEY}.${name}`)) {
       return false;
     }
 
@@ -143,7 +166,7 @@ export class Configuration {
     );
 
     if (response === "Cancel") {
-      this.context.workspaceState.update(
+      this.context.globalState.update(
         `${CANCELLED_OVERRIDES_KEY}.${name}`,
         true
       );
@@ -154,5 +177,34 @@ export class Configuration {
 
   private valuesAreDifferent(config: any, value: any) {
     return config !== undefined && config !== value;
+  }
+
+  private async promptOverrideStatus(): Promise<OverridesStatus> {
+    const response = await vscode.window.showInformationMessage(
+      "Would you like to apply all of the suggest configuration defaults?",
+      "Override All",
+      "Decide for each",
+      "Cancel"
+    );
+
+    if (response === "Override All") {
+      this.context.globalState.update(
+        APPROVED_ALL_OVERRIDES_KEY,
+        OverridesStatus.ApprovedAll
+      );
+      return OverridesStatus.ApprovedAll;
+    } else if (response === "Decide for each") {
+      this.context.globalState.update(
+        APPROVED_ALL_OVERRIDES_KEY,
+        OverridesStatus.ApproveEach
+      );
+      return OverridesStatus.ApproveEach;
+    } else {
+      this.context.globalState.update(
+        APPROVED_ALL_OVERRIDES_KEY,
+        OverridesStatus.Cancel
+      );
+      return OverridesStatus.Cancel;
+    }
   }
 }
