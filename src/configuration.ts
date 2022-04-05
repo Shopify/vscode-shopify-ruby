@@ -181,7 +181,7 @@ export class Configuration {
 
   private async promptOverrideStatus(): Promise<OverridesStatus> {
     const response = await vscode.window.showInformationMessage(
-      "Would you like to apply all of the suggest configuration defaults?",
+      "Would you like to apply all of the suggested configuration defaults?",
       "Override All",
       "Decide for each",
       "Cancel"
