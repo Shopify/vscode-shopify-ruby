@@ -1,16 +1,14 @@
-[![Build status](https://badge.buildkite.com/631679622eda9238c439afbf514f6f6a138ba67f48a54c09c6.svg)](https://buildkite.com/shopify/vscode-shopify-ruby)
+![Build Status](https://github.com/Shopify/vscode-shopify-ruby/workflows/CI/badge.svg)
 
 # VS Code Shopify Ruby
 
-This extension pack contains a collection of pre-configured plugins for working with Ruby in VS Code.
+This extension pack contains an opinionated collection of pre-configured plugins for working with Ruby in VS Code.
 
 ## Usage
 
-**Note**
-
-This extension will automatically configure the other plugins included in the pack, changing the user configurations in settings.json. If you have customized configuration for any of the plugins included, you may want to back it up before installing `vscode-shopify-ruby`.
-
 Search for `vscode-shopify-ruby` in the extensions tab and click install.
+
+When activated, the extension will prompt users about overriding their existing configuration to use the recommended defaults. You may want to backup your `settings.json` file before trying this extension out.
 
 ## Extension development
 
