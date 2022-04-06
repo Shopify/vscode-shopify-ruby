@@ -21,7 +21,9 @@
   "extensionPack": [
     "rebornix.ruby",
     "Shopify.rubocop-lsp",
-    "Shopify.vscode-shadowenv"
+    "Shopify.vscode-shadowenv",
+    "sorbet.sorbet-vscode-extension",
+    "koichisasada.vscode-rdbg"
   ],
   "contributes": {
     "commands": [
