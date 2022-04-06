@@ -75,7 +75,7 @@ export class Configuration {
   ) {
     this.configurationStore = configurationStore;
     this.context = context;
-    this.overrideStatus = context.globalState.get(APPROVED_ALL_OVERRIDES_KEY);
+    this.overrideStatus = this.getAproveAll();
   }
 
   async applyDefaults(force = false) {
@@ -209,5 +209,47 @@ export class Configuration {
       );
       return OverridesStatus.Cancel;
     }
+  }
+
+  private getAproveAll(): OverridesStatus | undefined {
+    const currentKey: OverridesStatus | undefined =
+      this.context.globalState.get(APPROVED_ALL_OVERRIDES_KEY);
+
+    // If there is an override status for the current plugin version, return it
+    if (currentKey) {
+      return currentKey;
+    }
+
+    // Otherwise, try to find a previous override status
+    const previousApprovalKey = this.context.globalState
+      .keys()
+      .find((key) => key.match(/shopify\.ruby\..*\.approved_all_overrides/));
+
+    if (previousApprovalKey === undefined) {
+      return undefined;
+    }
+
+    // If all overrides were previously approved and the current settings match, then carry over the override status
+    if (
+      this.context.globalState.get(previousApprovalKey) ===
+        OverridesStatus.ApprovedAll &&
+      this.allSettingsMatch()
+    ) {
+      this.context.globalState.update(
+        APPROVED_ALL_OVERRIDES_KEY,
+        OverridesStatus.ApprovedAll
+      );
+      return OverridesStatus.ApprovedAll;
+    }
+
+    // If overrides were previously approve, but values don't match, then prompt again
+    return undefined;
+  }
+
+  private allSettingsMatch(): boolean {
+    return DEFAULT_CONFIGS.every(({ scope, section, name, value }) => {
+      const config = this.configurationStore.getConfiguration(section, scope);
+      return config.inspect(name)?.globalValue === value;
+    });
   }
 }
