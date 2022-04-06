@@ -52,8 +52,11 @@ export interface ConfigurationStore {
   ): ConfigurationEntry;
 }
 
-const CANCELLED_OVERRIDES_KEY = "shopify.ruby.cancelled_overrides";
-const APPROVED_ALL_OVERRIDES_KEY = "shopify.ruby.approved_all_overrides";
+// We use the extension version as part of the key, so that we prompt again in case any of the defaults have changed
+const EXTENSION_VERSION =
+  vscode.extensions.getExtension("shopify.ruby")!.packageJSON.version;
+const CANCELLED_OVERRIDES_KEY = `shopify.ruby.${EXTENSION_VERSION}.cancelled_overrides`;
+const APPROVED_ALL_OVERRIDES_KEY = `shopify.ruby.${EXTENSION_VERSION}.approved_all_overrides`;
 
 export enum OverridesStatus {
   ApprovedAll = "approvedAll",
