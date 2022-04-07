@@ -8,4 +8,4 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.0.1-alpha]
 
-- Initial release including Ruby, rubocop-lsp, Sorbet, shadowenv and rdbg
+- Initial release including Ruby, rubocop-lsp, Sorbet, shadowenv, byesig and rdbg
