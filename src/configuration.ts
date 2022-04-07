@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 export const DEFAULT_CONFIGS = [
   { section: "ruby", name: "useBundler", value: true },
   { section: "ruby", name: "useLanguageServer", value: false },
-  { section: "ruby.lint", name: "rubocop", value: false },
+  { section: "ruby", name: "lint", value: { rubocop: false } },
   { section: "ruby", name: "codeCompletion", value: false },
   { section: "ruby", name: "intellisense", value: false },
   { section: "ruby", name: "format", value: false },
