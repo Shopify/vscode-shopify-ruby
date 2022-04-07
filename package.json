@@ -23,7 +23,8 @@
     "Shopify.rubocop-lsp",
     "Shopify.vscode-shadowenv",
     "sorbet.sorbet-vscode-extension",
-    "koichisasada.vscode-rdbg"
+    "koichisasada.vscode-rdbg",
+    "itarato.byesig"
   ],
   "contributes": {
     "commands": [
