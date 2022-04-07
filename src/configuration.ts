@@ -19,6 +19,10 @@ export const DEFAULT_CONFIGS = [
     name: "formatOnSave",
     value: true,
   },
+  { section: "byesig", name: "fold", value: false },
+  { section: "byesig", name: "enabled", value: true },
+  { section: "byesig", name: "opacity", value: 0.5 },
+  { section: "byesig", name: "showIcon", value: false },
 ];
 
 export interface ConfigurationEntry {
