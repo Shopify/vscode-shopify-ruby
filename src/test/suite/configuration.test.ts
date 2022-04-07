@@ -7,6 +7,7 @@ import {
   ConfigurationStore,
   Configuration,
   DEFAULT_CONFIGS,
+  OverridesStatus,
 } from "../../configuration";
 
 class FakeStore implements ConfigurationStore {
@@ -46,14 +47,19 @@ class FakeStore implements ConfigurationStore {
 
 suite("Configuration suite", () => {
   test("automatic configuration sets defaults", () => {
+    const extensionVersion =
+      vscode.extensions.getExtension("shopify.ruby")!.packageJSON.version;
     const context = {
-      workspaceState: {
-        get: (_name) => undefined,
+      globalState: {
+        get: (name) =>
+          name === `shopify.ruby.${extensionVersion}.approved_all_overrides`
+            ? OverridesStatus.ApprovedAll
+            : undefined,
       },
     } as vscode.ExtensionContext;
     const store = new FakeStore();
     const config = new Configuration(store, context);
-    config.applyDefaults(true);
+    config.applyDefaults();
 
     DEFAULT_CONFIGS.forEach(({ section, name, value }) => {
       assert.strictEqual(store.get(section, name), value);
