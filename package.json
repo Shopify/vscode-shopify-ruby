@@ -1,7 +1,7 @@
 {
   "name": "ruby",
   "displayName": "Ruby",
-  "description": "An auto-configured set of extensions for working with Ruby",
+  "description": "An opinionated and auto-configured set of extensions for Ruby development",
   "license": "MIT",
   "publisher": "Shopify",
   "repository": {
