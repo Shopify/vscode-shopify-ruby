@@ -118,6 +118,7 @@ export class Configuration {
     }
 
     const configName = `${section}.${name}`;
+    const printableValue = JSON.stringify(value);
     const existingConfig = config.inspect(name);
 
     // If the value configured already matches the default, don't prompt
@@ -136,7 +137,7 @@ export class Configuration {
         this.valuesAreDifferent(existingConfig.globalLanguageValue, value))
     ) {
       return this.promptOverride(
-        `The existing configuration for ${configName} doesn't match our suggested default (${value})`,
+        `The existing configuration for ${configName} doesn't match our suggested default (${printableValue})`,
         name
       );
     }
@@ -153,13 +154,13 @@ export class Configuration {
         ))
     ) {
       return this.promptOverride(
-        `The existing workspace configuration for ${configName} doesn't match our suggested default (${value})`,
+        `The existing workspace configuration for ${configName} doesn't match our suggested default (${printableValue})`,
         name
       );
     }
 
     return this.promptOverride(
-      `No configuration found for ${configName}. Would you like to apply the suggested default (${value})?`,
+      `No configuration found for ${configName}. Would you like to apply the suggested default (${printableValue})?`,
       name
     );
   }
