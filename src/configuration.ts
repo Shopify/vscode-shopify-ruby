@@ -121,8 +121,9 @@ export class Configuration {
     // If the value configured already matches the default, don't prompt
     if (
       existingConfig &&
-      (existingConfig.globalValue === value ||
-        existingConfig.globalLanguageValue === value)
+      (JSON.stringify(existingConfig.globalValue) === JSON.stringify(value) ||
+        JSON.stringify(existingConfig.globalLanguageValue) ===
+          JSON.stringify(value))
     ) {
       return false;
     }
@@ -183,7 +184,9 @@ export class Configuration {
   }
 
   private valuesAreDifferent(config: any, value: any) {
-    return config !== undefined && config !== value;
+    return (
+      config !== undefined && JSON.stringify(config) !== JSON.stringify(value)
+    );
   }
 
   private async promptOverrideStatus(): Promise<OverridesStatus> {
