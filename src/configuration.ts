@@ -121,9 +121,8 @@ export class Configuration {
     // If the value configured already matches the default, don't prompt
     if (
       existingConfig &&
-      (JSON.stringify(existingConfig.globalValue) === JSON.stringify(value) ||
-        JSON.stringify(existingConfig.globalLanguageValue) ===
-          JSON.stringify(value))
+      (!this.valuesAreDifferent(existingConfig.globalValue, value) ||
+        !this.valuesAreDifferent(existingConfig.globalLanguageValue, value))
     ) {
       return false;
     }
