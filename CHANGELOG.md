@@ -6,6 +6,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-## [0.0.1-alpha]
+## [0.0.1]
 
 - Initial release including Ruby, rubocop-lsp, Sorbet, shadowenv, byesig and rdbg
