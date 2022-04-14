@@ -57,10 +57,12 @@ export interface ConfigurationStore {
 }
 
 // We use the extension version as part of the key, so that we prompt again in case any of the defaults have changed
-const EXTENSION_VERSION =
-  vscode.extensions.getExtension("shopify.ruby")!.packageJSON.version;
-const CANCELLED_OVERRIDES_KEY = `shopify.ruby.${EXTENSION_VERSION}.cancelled_overrides`;
-const APPROVED_ALL_OVERRIDES_KEY = `shopify.ruby.${EXTENSION_VERSION}.approved_all_overrides`;
+const EXTENSION_NAME = "ruby-extensions-pack";
+const EXTENSION_VERSION = vscode.extensions.getExtension(
+  `shopify.${EXTENSION_NAME}`
+)!.packageJSON.version;
+const CANCELLED_OVERRIDES_KEY = `shopify.${EXTENSION_NAME}.${EXTENSION_VERSION}.cancelled_overrides`;
+const APPROVED_ALL_OVERRIDES_KEY = `shopify.${EXTENSION_NAME}.${EXTENSION_VERSION}.approved_all_overrides`;
 
 export enum OverridesStatus {
   ApprovedAll = "approvedAll",
@@ -232,7 +234,9 @@ export class Configuration {
     // Otherwise, try to find a previous override status
     const previousApprovalKey = this.context.globalState
       .keys()
-      .find((key) => key.match(/shopify\.ruby\..*\.approved_all_overrides/));
+      .find((key) =>
+        key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/)
+      );
 
     if (previousApprovalKey === undefined) {
       return undefined;

@@ -47,12 +47,15 @@ class FakeStore implements ConfigurationStore {
 
 suite("Configuration suite", () => {
   test("automatic configuration sets defaults", () => {
-    const extensionVersion =
-      vscode.extensions.getExtension("shopify.ruby")!.packageJSON.version;
+    const extensionName = "ruby-extensions-pack";
+    const extensionVersion = vscode.extensions.getExtension(
+      `shopify.${extensionName}`
+    )!.packageJSON.version;
     const context = {
       globalState: {
         get: (name) =>
-          name === `shopify.ruby.${extensionVersion}.approved_all_overrides`
+          name ===
+          `shopify.${extensionName}.${extensionVersion}.approved_all_overrides`
             ? OverridesStatus.ApprovedAll
             : undefined,
       },

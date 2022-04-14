@@ -6,7 +6,7 @@ This extension pack contains an opinionated collection of pre-configured extensi
 
 ## Usage
 
-Search for `vscode-shopify-ruby` in the extensions tab and click install.
+Search for `ruby-extensions-pack` in the extensions tab and click install.
 
 When activated, this extension will prompt you about overriding your existing configuration to use the recommended defaults.
 You may want to backup your `settings.json` file before trying this extension out.
