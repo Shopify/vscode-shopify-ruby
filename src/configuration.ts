@@ -99,7 +99,7 @@ export class Configuration {
       if (
         force ||
         canOverride ||
-        (await this.checkMissingSetting(config, name, value))
+        (await this.checkMissingSetting(config, section, name, value))
       ) {
         config.update(name, value, true, true);
       }
@@ -108,6 +108,7 @@ export class Configuration {
 
   private async checkMissingSetting(
     config: ConfigurationEntry,
+    section: string,
     name: string,
     value: any
   ): Promise<boolean> {
@@ -116,6 +117,8 @@ export class Configuration {
       return false;
     }
 
+    const configName = `${section}.${name}`;
+    const printableValue = JSON.stringify(value);
     const existingConfig = config.inspect(name);
 
     // If the value configured already matches the default, don't prompt
@@ -134,7 +137,7 @@ export class Configuration {
         this.valuesAreDifferent(existingConfig.globalLanguageValue, value))
     ) {
       return this.promptOverride(
-        `The existing configuration for ${name} doesn't match our suggested default`,
+        `The existing configuration for ${configName} doesn't match our suggested default (${printableValue})`,
         name
       );
     }
@@ -151,13 +154,13 @@ export class Configuration {
         ))
     ) {
       return this.promptOverride(
-        `The existing workspace configuration for ${name} doesn't match our suggested default`,
+        `The existing workspace configuration for ${configName} doesn't match our suggested default (${printableValue})`,
         name
       );
     }
 
     return this.promptOverride(
-      `No configuration found for ${name}. Would you like to apply the suggested default?`,
+      `No configuration found for ${configName}. Would you like to apply the suggested default (${printableValue})?`,
       name
     );
   }
