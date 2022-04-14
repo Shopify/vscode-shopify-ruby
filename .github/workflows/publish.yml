@@ -20,7 +20,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: 🔨 Package
-        run: yarn vsce package
+        run: yarn run package
 
       - name: Publish extension in the marketplace
         run: node_modules/.bin/vsce publish --packagePath vscode-shopify-ruby.vsix
