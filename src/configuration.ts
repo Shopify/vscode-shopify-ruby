@@ -100,13 +100,23 @@ export class Configuration {
     }
 
     const canOverride = this.overrideStatus === OverridesStatus.ApprovedAll;
-    this.recursivelyCheckSetting(0, force || canOverride);
+
+    if (force || canOverride) {
+      this.updateAllSettings();
+    } else {
+      this.recursivelyPromptSetting(0);
+    }
   }
 
-  // If we fire all setting prompts at once, because VS Code opens 3 popups at most, we are unable to let users decide
-  // for each one. By recursively prompting for each setting, we can wait to trigger the next prompt only when the
-  // previous promise is resolved - asking for a decision one at a time.
-  private recursivelyCheckSetting(settingIndex: number, canUpdate: boolean) {
+  private updateAllSettings() {
+    DEFAULT_CONFIGS.forEach(async ({ scope, section, name, value }) => {
+      const config = this.configurationStore.getConfiguration(section, scope);
+      config.update(name, value, true, true);
+    });
+  }
+
+  // Recursively step through each setting and prompt the user for their override decision
+  private recursivelyPromptSetting(settingIndex: number) {
     // Exit when we're at the end of the list
     if (settingIndex >= DEFAULT_CONFIGS.length) {
       return;
@@ -115,21 +125,15 @@ export class Configuration {
     const { scope, section, name, value } = DEFAULT_CONFIGS[settingIndex];
     const config = this.configurationStore.getConfiguration(section, scope);
 
-    if (canUpdate) {
-      // If we can update, then just update until we exhaust the list
-      config.update(name, value, true, true);
-      this.recursivelyCheckSetting(settingIndex + 1, canUpdate);
-    } else {
-      // If we need to check for each setting, then wait until we get a response to trigger the next prompt
-      this.checkMissingSetting(config, section, name, value)
-        .then((shouldUpdate) => {
-          if (shouldUpdate) {
-            config.update(name, value, true, true);
-          }
-          this.recursivelyCheckSetting(settingIndex + 1, canUpdate);
-        })
-        .catch(() => {});
-    }
+    // Only trigger the next prompt when the current promise is resolved (when the user has made a selection)
+    this.checkMissingSetting(config, section, name, value)
+      .then((shouldUpdate) => {
+        if (shouldUpdate) {
+          config.update(name, value, true, true);
+        }
+        this.recursivelyPromptSetting(settingIndex + 1);
+      })
+      .catch(() => {});
   }
 
   private async checkMissingSetting(
