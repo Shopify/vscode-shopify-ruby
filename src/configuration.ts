@@ -23,6 +23,8 @@ export const DEFAULT_CONFIGS = [
   { section: "byesig", name: "enabled", value: true },
   { section: "byesig", name: "opacity", value: 0.5 },
   { section: "byesig", name: "showIcon", value: false },
+  { section: "files", name: "trimTrailingWhitespace", value: true },
+  { section: "files", name: "insertFinalNewline", value: true },
 ];
 
 export interface ConfigurationEntry {
