@@ -85,6 +85,10 @@ export class Configuration {
   }
 
   async applyDefaults(force = false) {
+    if (this.allSettingsMatch()) {
+      return;
+    }
+
     if (this.overrideStatus === undefined || force) {
       this.overrideStatus = await this.promptOverrideStatus();
     }
@@ -126,8 +130,9 @@ export class Configuration {
     // If the value configured already matches the default, don't prompt
     if (
       existingConfig &&
-      (!this.valuesAreDifferent(existingConfig.globalValue, value) ||
-        !this.valuesAreDifferent(existingConfig.globalLanguageValue, value))
+      (JSON.stringify(existingConfig.globalValue) === JSON.stringify(value) ||
+        JSON.stringify(existingConfig.globalLanguageValue) ===
+          JSON.stringify(value))
     ) {
       return false;
     }
@@ -262,7 +267,11 @@ export class Configuration {
   private allSettingsMatch(): boolean {
     return DEFAULT_CONFIGS.every(({ scope, section, name, value }) => {
       const config = this.configurationStore.getConfiguration(section, scope);
-      return config.inspect(name)?.globalValue === value;
+      const values = config.inspect(name);
+      return (
+        JSON.stringify(values?.globalValue) === JSON.stringify(value) ||
+        JSON.stringify(values?.globalLanguageValue) === JSON.stringify(value)
+      );
     });
   }
 }
