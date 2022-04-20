@@ -101,17 +101,39 @@ export class Configuration {
 
     const canOverride = this.overrideStatus === OverridesStatus.ApprovedAll;
 
+    if (force || canOverride) {
+      this.updateAllSettings();
+    } else {
+      this.recursivelyPromptSetting(0);
+    }
+  }
+
+  private updateAllSettings() {
     DEFAULT_CONFIGS.forEach(async ({ scope, section, name, value }) => {
       const config = this.configurationStore.getConfiguration(section, scope);
-
-      if (
-        force ||
-        canOverride ||
-        (await this.checkMissingSetting(config, section, name, value))
-      ) {
-        config.update(name, value, true, true);
-      }
+      config.update(name, value, true, true);
     });
+  }
+
+  // Recursively step through each setting and prompt the user for their override decision
+  private recursivelyPromptSetting(settingIndex: number) {
+    // Exit when we're at the end of the list
+    if (settingIndex >= DEFAULT_CONFIGS.length) {
+      return;
+    }
+
+    const { scope, section, name, value } = DEFAULT_CONFIGS[settingIndex];
+    const config = this.configurationStore.getConfiguration(section, scope);
+
+    // Only trigger the next prompt when the current promise is resolved (when the user has made a selection)
+    this.checkMissingSetting(config, section, name, value)
+      .then((shouldUpdate) => {
+        if (shouldUpdate) {
+          config.update(name, value, true, true);
+        }
+        this.recursivelyPromptSetting(settingIndex + 1);
+      })
+      .catch(() => {});
   }
 
   private async checkMissingSetting(
