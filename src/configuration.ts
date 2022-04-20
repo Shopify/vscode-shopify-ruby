@@ -100,18 +100,36 @@ export class Configuration {
     }
 
     const canOverride = this.overrideStatus === OverridesStatus.ApprovedAll;
+    this.recursivelyCheckSetting(0, force || canOverride);
+  }
 
-    DEFAULT_CONFIGS.forEach(async ({ scope, section, name, value }) => {
-      const config = this.configurationStore.getConfiguration(section, scope);
+  // If we fire all setting prompts at once, because VS Code opens 3 popups at most, we are unable to let users decide
+  // for each one. By recursively prompting for each setting, we can wait to trigger the next prompt only when the
+  // previous promise is resolved - asking for a decision one at a time.
+  private recursivelyCheckSetting(settingIndex: number, canUpdate: boolean) {
+    // Exit when we're at the end of the list
+    if (settingIndex >= DEFAULT_CONFIGS.length) {
+      return;
+    }
 
-      if (
-        force ||
-        canOverride ||
-        (await this.checkMissingSetting(config, section, name, value))
-      ) {
-        config.update(name, value, true, true);
-      }
-    });
+    const { scope, section, name, value } = DEFAULT_CONFIGS[settingIndex];
+    const config = this.configurationStore.getConfiguration(section, scope);
+
+    if (canUpdate) {
+      // If we can update, then just update until we exhaust the list
+      config.update(name, value, true, true);
+      this.recursivelyCheckSetting(settingIndex + 1, canUpdate);
+    } else {
+      // If we need to check for each setting, then wait until we get a response to trigger the next prompt
+      this.checkMissingSetting(config, section, name, value)
+        .then((shouldUpdate) => {
+          if (shouldUpdate) {
+            config.update(name, value, true, true);
+          }
+          this.recursivelyCheckSetting(settingIndex + 1, canUpdate);
+        })
+        .catch(() => {});
+    }
   }
 
   private async checkMissingSetting(
