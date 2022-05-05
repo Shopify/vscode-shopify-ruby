@@ -11,7 +11,7 @@ export const DEFAULT_CONFIGS = [
     scope: { languageId: "ruby" },
     section: "editor",
     name: "defaultFormatter",
-    value: "Shopify.rubocop-lsp",
+    value: "Shopify.ruby-lsp",
   },
   {
     scope: { languageId: "ruby" },
