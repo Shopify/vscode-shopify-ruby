@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.3]
+
+- Add the Ruby LSP to the pack (https://github.com/Shopify/vscode-shopify-ruby/pull/85)
+- Remove rubocop-lsp from the pack (https://github.com/Shopify/vscode-shopify-ruby/pull/86)
+
 ## [0.0.2]
 
 - Fix equality check when deciding each override (#63)
