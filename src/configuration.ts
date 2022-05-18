@@ -1,5 +1,12 @@
 import * as vscode from "vscode";
 
+import {
+  ConfigurationStore,
+  APPROVED_ALL_OVERRIDES_KEY,
+  SHADOWED_SETTINGS_KEY,
+} from "./configurationStore";
+import { Setting, OverrideType } from "./setting";
+
 export const DEFAULT_CONFIGS = [
   { section: "ruby", name: "useBundler", value: true },
   { section: "ruby", name: "useLanguageServer", value: false },
@@ -27,45 +34,6 @@ export const DEFAULT_CONFIGS = [
   { section: "files", name: "insertFinalNewline", value: true },
 ];
 
-export interface ConfigurationEntry {
-  update(
-    section: string,
-    value: any,
-    configurationTarget?:
-      | boolean
-      | vscode.ConfigurationTarget
-      | null
-      | undefined,
-    overrideInLanguage?: boolean | undefined
-  ): Thenable<void>;
-
-  inspect(section: string):
-    | {
-        globalValue?: any;
-        workspaceValue?: any;
-        workspaceFolderValue?: any;
-        globalLanguageValue?: any;
-        workspaceLanguageValue?: any;
-        workspaceFolderLanguageValue?: any;
-      }
-    | undefined;
-}
-
-export interface ConfigurationStore {
-  getConfiguration(
-    section: string,
-    scope: vscode.ConfigurationScope | null | undefined
-  ): ConfigurationEntry;
-}
-
-// We use the extension version as part of the key, so that we prompt again in case any of the defaults have changed
-const EXTENSION_NAME = "ruby-extensions-pack";
-const EXTENSION_VERSION = vscode.extensions.getExtension(
-  `shopify.${EXTENSION_NAME}`
-)!.packageJSON.version;
-const CANCELLED_OVERRIDES_KEY = `shopify.${EXTENSION_NAME}.${EXTENSION_VERSION}.cancelled_overrides`;
-const APPROVED_ALL_OVERRIDES_KEY = `shopify.${EXTENSION_NAME}.${EXTENSION_VERSION}.approved_all_overrides`;
-
 export enum OverridesStatus {
   ApprovedAll = "approvedAll",
   ApproveEach = "approveEach",
@@ -73,21 +41,33 @@ export enum OverridesStatus {
 }
 
 export class Configuration {
-  private configurationStore: ConfigurationStore;
   private context: vscode.ExtensionContext;
   private overrideStatus: OverridesStatus | undefined;
+  private settings: Setting[];
+  private allSettingsMatch: boolean;
 
   constructor(
     configurationStore: ConfigurationStore,
     context: vscode.ExtensionContext
   ) {
-    this.configurationStore = configurationStore;
+    this.settings = DEFAULT_CONFIGS.map(
+      (config) =>
+        new Setting(
+          context,
+          configurationStore,
+          config.section,
+          config.name,
+          config.value,
+          config.scope
+        )
+    );
+    this.allSettingsMatch = this.settings.every((setting) => setting.match());
     this.context = context;
     this.overrideStatus = this.getAproveAll();
   }
 
   async applyDefaults(force = false) {
-    if (this.allSettingsMatch()) {
+    if (this.allSettingsMatch) {
       return;
     }
 
@@ -102,124 +82,32 @@ export class Configuration {
     const canOverride = this.overrideStatus === OverridesStatus.ApprovedAll;
 
     if (force || canOverride) {
-      this.updateAllSettings();
+      this.settings.forEach((setting) => setting.update());
+      this.showShadowedWarning();
     } else {
       this.recursivelyPromptSetting(0);
     }
   }
 
-  private updateAllSettings() {
-    DEFAULT_CONFIGS.forEach(async ({ scope, section, name, value }) => {
-      const config = this.configurationStore.getConfiguration(section, scope);
-      config.update(name, value, true, true);
-    });
-  }
-
   // Recursively step through each setting and prompt the user for their override decision
   private recursivelyPromptSetting(settingIndex: number) {
     // Exit when we're at the end of the list
-    if (settingIndex >= DEFAULT_CONFIGS.length) {
+    if (settingIndex >= this.settings.length) {
       return;
     }
 
-    const { scope, section, name, value } = DEFAULT_CONFIGS[settingIndex];
-    const config = this.configurationStore.getConfiguration(section, scope);
+    const setting = this.settings[settingIndex];
 
     // Only trigger the next prompt when the current promise is resolved (when the user has made a selection)
-    this.checkMissingSetting(config, section, name, value)
-      .then((shouldUpdate) => {
-        if (shouldUpdate) {
-          config.update(name, value, true, true);
+    setting
+      .promptOverride()
+      .then((overrideType) => {
+        if (overrideType !== OverrideType.None) {
+          setting.update(overrideType);
         }
         this.recursivelyPromptSetting(settingIndex + 1);
       })
       .catch(() => {});
-  }
-
-  private async checkMissingSetting(
-    config: ConfigurationEntry,
-    section: string,
-    name: string,
-    value: any
-  ): Promise<boolean> {
-    // If the user cancelled the override, don't prompt again
-    if (this.context.globalState.get(`${CANCELLED_OVERRIDES_KEY}.${name}`)) {
-      return false;
-    }
-
-    const configName = `${section}.${name}`;
-    const printableValue = JSON.stringify(value);
-    const existingConfig = config.inspect(name);
-
-    // If the value configured already matches the default, don't prompt
-    if (
-      existingConfig &&
-      (JSON.stringify(existingConfig.globalValue) === JSON.stringify(value) ||
-        JSON.stringify(existingConfig.globalLanguageValue) ===
-          JSON.stringify(value))
-    ) {
-      return false;
-    }
-
-    // If the global value is set and is different, scope per language or not, prompt to override
-    if (
-      existingConfig &&
-      (this.valuesAreDifferent(existingConfig.globalValue, value) ||
-        this.valuesAreDifferent(existingConfig.globalLanguageValue, value))
-    ) {
-      return this.promptOverride(
-        `The existing configuration for ${configName} doesn't match our suggested default (${printableValue})`,
-        name
-      );
-    }
-
-    // If the workspace value is set and is different, scope per language or not, prompt to override
-    if (
-      existingConfig &&
-      (this.valuesAreDifferent(existingConfig.workspaceValue, value) ||
-        this.valuesAreDifferent(existingConfig.workspaceFolderValue, value) ||
-        this.valuesAreDifferent(existingConfig.workspaceLanguageValue, value) ||
-        this.valuesAreDifferent(
-          existingConfig.workspaceFolderLanguageValue,
-          value
-        ))
-    ) {
-      return this.promptOverride(
-        `The existing workspace configuration for ${configName} doesn't match our suggested default (${printableValue})`,
-        name
-      );
-    }
-
-    return this.promptOverride(
-      `No configuration found for ${configName}. Would you like to apply the suggested default (${printableValue})?`,
-      name
-    );
-  }
-
-  private async promptOverride(
-    message: string,
-    name: string
-  ): Promise<boolean> {
-    const response = await vscode.window.showInformationMessage(
-      message,
-      "Override",
-      "Cancel"
-    );
-
-    if (response === "Cancel") {
-      this.context.globalState.update(
-        `${CANCELLED_OVERRIDES_KEY}.${name}`,
-        true
-      );
-    }
-
-    return response === "Override";
-  }
-
-  private valuesAreDifferent(config: any, value: any) {
-    return (
-      config !== undefined && JSON.stringify(config) !== JSON.stringify(value)
-    );
   }
 
   private async promptOverrideStatus(): Promise<OverridesStatus> {
@@ -274,7 +162,7 @@ export class Configuration {
     if (
       this.context.globalState.get(previousApprovalKey) ===
         OverridesStatus.ApprovedAll &&
-      this.allSettingsMatch()
+      this.allSettingsMatch
     ) {
       // Delete previous entries
       existingKeys.forEach((key) => {
@@ -288,18 +176,29 @@ export class Configuration {
       return OverridesStatus.ApprovedAll;
     }
 
-    // If overrides were previously approve, but values don't match, then prompt again
+    // If overrides were previously approved, but values don't match, then prompt again
     return undefined;
   }
 
-  private allSettingsMatch(): boolean {
-    return DEFAULT_CONFIGS.every(({ scope, section, name, value }) => {
-      const config = this.configurationStore.getConfiguration(section, scope);
-      const values = config.inspect(name);
-      return (
-        JSON.stringify(values?.globalValue) === JSON.stringify(value) ||
-        JSON.stringify(values?.globalLanguageValue) === JSON.stringify(value)
+  private showShadowedWarning() {
+    // If we already warned about settings being shadowed by workspace settings for this repo, don't show it again
+    if (this.context.workspaceState.get(SHADOWED_SETTINGS_KEY)) {
+      return;
+    }
+
+    const shadowedSettings = this.settings.filter(
+      (setting) => setting.shadowedByWorkspaceSetting
+    );
+
+    if (shadowedSettings.length > 0) {
+      const names = shadowedSettings
+        .map((setting) => setting.fullName())
+        .join(", ");
+      this.context.workspaceState.update(SHADOWED_SETTINGS_KEY, true);
+
+      vscode.window.showWarningMessage(
+        `These settings won't take effect because they are overridden by .vscode/settings.json: ${names}`
       );
-    });
+    }
   }
 }

@@ -3,49 +3,11 @@ import * as assert from "assert";
 import * as vscode from "vscode";
 
 import {
-  ConfigurationEntry,
-  ConfigurationStore,
   Configuration,
   DEFAULT_CONFIGS,
   OverridesStatus,
 } from "../../configuration";
-
-class FakeStore implements ConfigurationStore {
-  private storage: { [key: string]: any } = {};
-
-  constructor() {
-    this.storage = {};
-  }
-
-  get(section: string, name: string) {
-    return this.storage[`${section}.${name}`];
-  }
-
-  getConfiguration(
-    section: string,
-    _scope: vscode.ConfigurationScope | null | undefined
-  ): ConfigurationEntry {
-    return {
-      update: (
-        name: string,
-        value: any,
-        _configurationTarget:
-          | boolean
-          | vscode.ConfigurationTarget
-          | null
-          | undefined,
-        _overrideInLanguage: boolean | undefined
-      ) => {
-        return (this.storage[`${section}.${name}`] = value);
-      },
-      inspect: (name: string) => {
-        return {
-          globalValue: this.storage[`${section}.${name}`],
-        };
-      },
-    };
-  }
-}
+import FakeStore from "../fakeStore";
 
 class FakeGlobalState implements vscode.Memento {
   private storage: { [key: string]: any } = {};
