@@ -261,11 +261,10 @@ export class Configuration {
     }
 
     // Otherwise, try to find a previous override status
-    const previousApprovalKey = this.context.globalState
-      .keys()
-      .find((key) =>
-        key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/)
-      );
+    const existingKeys = this.context.globalState.keys();
+    const previousApprovalKey = existingKeys.find((key) =>
+      key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/)
+    );
 
     if (previousApprovalKey === undefined) {
       return undefined;
@@ -277,6 +276,11 @@ export class Configuration {
         OverridesStatus.ApprovedAll &&
       this.allSettingsMatch()
     ) {
+      // Delete previous entries
+      existingKeys.forEach((key) => {
+        this.context.globalState.update(key, undefined);
+      });
+
       this.context.globalState.update(
         APPROVED_ALL_OVERRIDES_KEY,
         OverridesStatus.ApprovedAll
