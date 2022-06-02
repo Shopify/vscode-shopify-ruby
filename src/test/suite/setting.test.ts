@@ -3,7 +3,7 @@ import * as assert from "assert";
 import * as vscode from "vscode";
 
 import FakeStore from "../fakeStore";
-import { Setting } from "../../setting";
+import { OverrideType, Setting } from "../../setting";
 
 suite("Setting suite", () => {
   test("match returns true if existing value matches", () => {
@@ -111,6 +111,53 @@ suite("Setting suite", () => {
 
     assert.strictEqual(
       store.get("editor", "defaultFormatter"),
+      "Shopify.ruby-lsp"
+    );
+    assert.strictEqual(
+      store.get("editor", "defaultFormatter", false),
+      undefined
+    );
+  });
+
+  test("update both changes the value of global and workspace settings", () => {
+    const store = new FakeStore();
+    const setting = new Setting(
+      {} as vscode.ExtensionContext,
+      store,
+      "editor",
+      "defaultFormatter",
+      "Shopify.ruby-lsp",
+      undefined
+    );
+
+    setting.update(OverrideType.Both);
+
+    assert.strictEqual(
+      store.get("editor", "defaultFormatter"),
+      "Shopify.ruby-lsp"
+    );
+    assert.strictEqual(
+      store.get("editor", "defaultFormatter", false),
+      "Shopify.ruby-lsp"
+    );
+  });
+
+  test("update can change only workspace settings", () => {
+    const store = new FakeStore();
+    const setting = new Setting(
+      {} as vscode.ExtensionContext,
+      store,
+      "editor",
+      "defaultFormatter",
+      "Shopify.ruby-lsp",
+      undefined
+    );
+
+    setting.update(OverrideType.Workspace);
+
+    assert.strictEqual(store.get("editor", "defaultFormatter"), undefined);
+    assert.strictEqual(
+      store.get("editor", "defaultFormatter", false),
       "Shopify.ruby-lsp"
     );
   });

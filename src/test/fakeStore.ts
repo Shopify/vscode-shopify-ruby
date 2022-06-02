@@ -11,8 +11,12 @@ export default class FakeStore implements ConfigurationStore {
     this.workspaceStorage = {};
   }
 
-  get(section: string, name: string) {
-    return this.storage[`${section}.${name}`];
+  get(section: string, name: string, globalStore = true) {
+    if (globalStore) {
+      return this.storage[`${section}.${name}`];
+    } else {
+      return this.workspaceStorage[`${section}.${name}`];
+    }
   }
 
   addToWorkspace(section: string, name: string, value: any) {
@@ -27,14 +31,18 @@ export default class FakeStore implements ConfigurationStore {
       update: (
         name: string,
         value: any,
-        _configurationTarget:
+        configurationTarget:
           | boolean
           | vscode.ConfigurationTarget
           | null
           | undefined,
         _overrideInLanguage: boolean | undefined
       ) => {
-        return (this.storage[`${section}.${name}`] = value);
+        if (configurationTarget) {
+          return (this.storage[`${section}.${name}`] = value);
+        } else {
+          return (this.workspaceStorage[`${section}.${name}`] = value);
+        }
       },
       inspect: (name: string) => {
         return {
