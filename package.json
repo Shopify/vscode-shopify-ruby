@@ -29,8 +29,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "ruby.force_apply_defaults",
-        "title": "Ruby: Force apply defaults"
+        "command": "rubyExtensionsPack.forceApplyDefaults",
+        "title": "Ruby extensions pack: Force apply defaults"
+      },
+      {
+        "command": "rubyExtensionsPack.clearState",
+        "title": "Ruby extensions pack: Clear cache and recommended settings"
       }
     ]
   },

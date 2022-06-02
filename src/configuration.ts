@@ -89,6 +89,22 @@ export class Configuration {
     }
   }
 
+  clearState() {
+    // Clear setting config and cache
+    this.settings.forEach((setting) => setting.clear());
+
+    // Clear approval cache
+    const existingKeys = this.context.globalState
+      .keys()
+      .filter((key) =>
+        key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/)
+      );
+
+    existingKeys.forEach((key) => {
+      this.context.globalState.update(key, undefined);
+    });
+  }
+
   // Recursively step through each setting and prompt the user for their override decision
   private recursivelyPromptSetting(settingIndex: number) {
     // Exit when we're at the end of the list
