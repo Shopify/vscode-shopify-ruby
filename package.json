@@ -52,7 +52,7 @@
     "@shopify/prettier-config": "^1.1.2",
     "@types/glob": "^7.1.4",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^17.0.36",
+    "@types/node": "^17.0.40",
     "@types/uuid": "^8.3.4",
     "@types/vscode": "^1.63.0",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
