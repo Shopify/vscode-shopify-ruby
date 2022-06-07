@@ -3,7 +3,9 @@ import * as assert from "assert";
 import * as vscode from "vscode";
 
 import FakeStore from "../fakeStore";
+import FakeGlobalState from "../fakeGlobalState";
 import { OverrideType, Setting } from "../../setting";
+import { CANCELLED_OVERRIDES_KEY } from "../../configurationStore";
 
 suite("Setting suite", () => {
   test("match returns true if existing value matches", () => {
@@ -206,5 +208,54 @@ suite("Setting suite", () => {
     );
 
     assert.strictEqual(setting.shadowedByWorkspaceSetting, true);
+  });
+
+  test("clear deletes configuration entry", () => {
+    const store = new FakeStore();
+    store
+      .getConfiguration("editor", undefined)
+      .update("defaultFormatter", "Shopify.ruby-lsp", true, true);
+
+    const context = {
+      globalState: new FakeGlobalState(),
+    } as unknown as vscode.ExtensionContext;
+
+    const setting = new Setting(
+      context,
+      store,
+      "editor",
+      "defaultFormatter",
+      "Shopify.ruby-lsp",
+      undefined
+    );
+
+    setting.clear();
+    assert.strictEqual(store.get("editor", "defaultFormatter"), undefined);
+  });
+
+  test("clear deletes cancelled cache entry", () => {
+    const store = new FakeStore();
+    store
+      .getConfiguration("editor", undefined)
+      .update("defaultFormatter", "Shopify.ruby-lsp", true, true);
+
+    const globalState = new FakeGlobalState();
+    globalState.update(`${CANCELLED_OVERRIDES_KEY}.defaultFormatter`, true);
+
+    const context = { globalState } as unknown as vscode.ExtensionContext;
+    const setting = new Setting(
+      context,
+      store,
+      "editor",
+      "defaultFormatter",
+      "Shopify.ruby-lsp",
+      undefined
+    );
+
+    setting.clear();
+    assert.strictEqual(
+      globalState.get(`${CANCELLED_OVERRIDES_KEY}.defaultFormatter`),
+      undefined
+    );
   });
 });

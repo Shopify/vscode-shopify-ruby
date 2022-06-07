@@ -8,35 +8,7 @@ import {
   OverridesStatus,
 } from "../../configuration";
 import FakeStore from "../fakeStore";
-
-class FakeGlobalState implements vscode.Memento {
-  private storage: { [key: string]: any } = {};
-
-  constructor() {
-    this.storage = {};
-  }
-
-  update(key: string, value: any): Thenable<void> {
-    if (value === undefined) {
-      delete this.storage[key];
-      return Promise.resolve();
-    }
-
-    return (this.storage[key] = value);
-  }
-
-  get(name: string) {
-    return this.storage[name];
-  }
-
-  keys() {
-    return Object.keys(this.storage);
-  }
-
-  setKeysForSync(_keys: ReadonlyArray<string>): void {
-    // noop
-  }
-}
+import FakeGlobalState from "../fakeGlobalState";
 
 suite("Configuration suite", () => {
   test("automatic configuration sets defaults", () => {
@@ -107,5 +79,39 @@ suite("Configuration suite", () => {
       ),
       OverridesStatus.ApprovedAll
     );
+  });
+
+  test("clearState deletes all settings and cache", () => {
+    const extensionName = "ruby-extensions-pack";
+    const extensionVersion = vscode.extensions.getExtension(
+      `shopify.${extensionName}`
+    )!.packageJSON.version;
+
+    const globalState = new FakeGlobalState();
+    globalState.update(
+      `shopify.${extensionName}.${extensionVersion}.approved_all_overrides`,
+      OverridesStatus.ApprovedAll
+    );
+
+    const context = { globalState } as unknown as vscode.ExtensionContext;
+    const store = new FakeStore();
+    const config = new Configuration(store, context);
+
+    // Apply defaults and verify that settings are set and that there is a cache entry
+    config.applyDefaults();
+
+    DEFAULT_CONFIGS.forEach(({ section, name, value }) => {
+      assert.strictEqual(store.get(section, name), value);
+    });
+    assert.strictEqual(globalState.keys().length, 1);
+
+    // Clear the state and verify that all settings and the cache were cleared
+    config.clearState();
+
+    DEFAULT_CONFIGS.forEach(({ section, name }) => {
+      assert.strictEqual(store.get(section, name), undefined);
+    });
+
+    assert.strictEqual(globalState.keys().length, 0);
   });
 });

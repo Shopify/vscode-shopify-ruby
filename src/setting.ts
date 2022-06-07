@@ -83,6 +83,14 @@ export class Setting {
     return JSON.stringify(this.value);
   }
 
+  clear() {
+    this.configurationEntry.update(this.name, undefined, true, true);
+    this.context.globalState.update(
+      `${CANCELLED_OVERRIDES_KEY}.${this.name}`,
+      undefined
+    );
+  }
+
   async promptOverride(): Promise<OverrideType> {
     // If the user cancelled the override or if the setting does not need, don't prompt
     if (
