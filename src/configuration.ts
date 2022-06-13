@@ -26,6 +26,18 @@ export const DEFAULT_CONFIGS = [
     name: "formatOnSave",
     value: false,
   },
+  {
+    scope: { languageId: "ruby" },
+    section: "editor",
+    name: "tabSize",
+    value: 2,
+  },
+  {
+    scope: { languageId: "ruby" },
+    section: "editor",
+    name: "insertSpaces",
+    value: true,
+  },
   { section: "byesig", name: "fold", value: false },
   { section: "byesig", name: "enabled", value: true },
   { section: "byesig", name: "opacity", value: 0.5 },
