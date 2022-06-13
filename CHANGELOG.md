@@ -6,6 +6,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.4]
+
+- Cleanup previous override approvals (https://github.com/Shopify/vscode-shopify-ruby/pull/99)
+- Warn users about settings shadowed by workspace settings (https://github.com/Shopify/vscode-shopify-ruby/pull/100)
+- Add command to clear cache and settings (https://github.com/Shopify/vscode-shopify-ruby/pull/117)
+- Disable format on save temporarily (https://github.com/Shopify/vscode-shopify-ruby/pull/123)
+- Configure Ruby files to use 2 spaces of indentation (https://github.com/Shopify/vscode-shopify-ruby/pull/125)
+
 ## [0.0.3]
 
 - Add the Ruby LSP to the pack (https://github.com/Shopify/vscode-shopify-ruby/pull/85)
