@@ -141,12 +141,12 @@ export class Configuration {
   private async promptOverrideStatus(): Promise<OverridesStatus> {
     const response = await vscode.window.showInformationMessage(
       "Would you like to apply all of the suggested configuration defaults?",
-      "Override All",
+      "Apply All",
       "Decide for each",
       "Cancel"
     );
 
-    if (response === "Override All") {
+    if (response === "Apply All") {
       this.context.globalState.update(
         APPROVED_ALL_OVERRIDES_KEY,
         OverridesStatus.ApprovedAll

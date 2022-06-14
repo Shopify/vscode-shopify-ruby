@@ -9,6 +9,7 @@ import {
 
 export enum OverrideType {
   Global = "Override",
+  ApplyNew = "Apply",
   Workspace = "Override workspace",
   Both = "Override both",
   None = "Cancel",
@@ -101,7 +102,19 @@ export class Setting {
     }
 
     let message = `The setting ${this.fullName()} doesn't match our recommendation (${this.printableValue()})`;
-    let options: OverrideType[] = [OverrideType.Global, OverrideType.None];
+    let exists = true;
+    if (
+      this.existingConfig === undefined ||
+      this.existingConfig?.globalValue === undefined
+    ) {
+      message = `No configuration found for ${this.fullName()}. Would you like to apply the suggested default (${this.printableValue()})?`;
+      exists = false;
+    }
+
+    let options: OverrideType[] = [
+      exists ? OverrideType.Global : OverrideType.ApplyNew,
+      OverrideType.None,
+    ];
 
     if (this.shadowedByWorkspaceSetting) {
       message = message.concat(" and is shadowed by a workspace setting");
