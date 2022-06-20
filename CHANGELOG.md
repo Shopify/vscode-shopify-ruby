@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.5]
+
+- Clarify whether users are adding or overriding a setting during setup (https://github.com/Shopify/vscode-shopify-ruby/pull/133)
+
 ## [0.0.4]
 
 - Cleanup previous override approvals (https://github.com/Shopify/vscode-shopify-ruby/pull/99)
