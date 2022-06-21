@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.6]
+
+- Save setting when "Apply" is selected (https://github.com/Shopify/vscode-shopify-ruby/pull/143)
+- Enable formatOnSave (https://github.com/Shopify/vscode-shopify-ruby/pull/144)
+
 ## [0.0.5]
 
 - Clarify whether users are adding or overriding a setting during setup (https://github.com/Shopify/vscode-shopify-ruby/pull/133)
