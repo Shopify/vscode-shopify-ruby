@@ -70,7 +70,7 @@ export class Setting {
       this.configurationEntry.update(
         this.name,
         this.value,
-        type === OverrideType.Global,
+        type === OverrideType.Global || type === OverrideType.ApplyNew,
         true
       );
     }
