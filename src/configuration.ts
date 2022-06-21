@@ -24,7 +24,7 @@ export const DEFAULT_CONFIGS = [
     scope: { languageId: "ruby" },
     section: "editor",
     name: "formatOnSave",
-    value: false,
+    value: true,
   },
   {
     scope: { languageId: "ruby" },
