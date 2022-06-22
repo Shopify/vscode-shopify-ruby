@@ -44,6 +44,7 @@ export const DEFAULT_CONFIGS = [
   { section: "byesig", name: "showIcon", value: false },
   { section: "files", name: "trimTrailingWhitespace", value: true },
   { section: "files", name: "insertFinalNewline", value: true },
+  { section: "editor", name: "rulers", value: [120] },
 ];
 
 export enum OverridesStatus {
