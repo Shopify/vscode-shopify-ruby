@@ -1,3 +1,7 @@
+<p align="center">
+  <img alt="Ruby extensions pack logo" width="200" src="icon.png" />
+</p>
+
 ![Build Status](https://github.com/Shopify/vscode-shopify-ruby/workflows/CI/badge.svg)
 
 # VS Code Shopify Ruby
