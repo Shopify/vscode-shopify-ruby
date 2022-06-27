@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/Shopify/vscode-shopify-ruby"
   },
+  "icon": "icon.png",
   "version": "0.0.6",
   "engines": {
     "vscode": "^1.63.0"
