@@ -51,6 +51,11 @@
     "vscode:prepublish": "yarn run esbuild-base --minify",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node"
   },
+  "resolutions": {
+    "node-fetch": ">= 2.6.7",
+    "cross-fetch": ">= 3.1.5",
+    "ws": ">= 7.4.6"
+  },
   "devDependencies": {
     "@babel/core": "^7.18.6",
     "@shopify/eslint-plugin": "^41.3.1",
