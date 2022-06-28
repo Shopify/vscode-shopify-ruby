@@ -30,6 +30,28 @@ are expected to adhere to the
 [Contributor Covenant](https://github.com/Shopify/vscode-shopify-ruby/blob/main/CODE_OF_CONDUCT.md)
 code of conduct.
 
+### Executing tests
+
+1. Open VS Code on this repo
+2. Make sure dependencies are installed (`yarn install`)
+3. On VS Code's run and debug tab, select the `Extension tests` task
+4. Click the run button or press F5 to run tests. Output is displayed in the debug console
+
+### Testing the extension locally
+
+1. Open VS Code on this repo
+2. Make sure dependencies are installed (`yarn install`)
+3. On VS Code's run and debug tab, select the `Extension` task
+4. This will open a second VS Code window where the development version of the extension is running. Use it to verify
+   that the extension is working as expected
+5. If needed, the cache and recommended settings can be cleared by running the `Ruby extensions pack: Clear cache`
+   command. This will make the extension prompt overrides again
+
+### Debugging
+
+To debug the extension, add breakpoints using the VS Code interface and either run the tests or the extension in
+development mode.
+
 ## License
 
 The extension is available as open source under the terms of the
