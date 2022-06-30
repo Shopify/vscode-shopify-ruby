@@ -25,7 +25,7 @@ When activated, this extension will prompt you about overriding your existing co
 You may want to backup your `settings.json` file before trying this extension out.
 
 The recommended settings and their respective values can be found
-[here](https://github.com/Shopify/vscode-shopify-ruby/blob/main/src/configuration.ts#L10).
+in the extension [configuration file](https://github.com/Shopify/vscode-shopify-ruby/blob/main/src/configuration.ts#L10).
 
 ### Commands
 
