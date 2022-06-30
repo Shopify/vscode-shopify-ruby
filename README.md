@@ -17,10 +17,24 @@ This extension pack contains an opinionated collection of pre-configured extensi
 
 ## Usage
 
-Search for [`ruby-extensions-pack`](https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-extensions-pack) in the extensions tab and click install.
+Search for
+[`Shopify.ruby-extensions-pack`](https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-extensions-pack) in
+the extensions tab and click install.
 
 When activated, this extension will prompt you about overriding your existing configuration to use the recommended defaults.
 You may want to backup your `settings.json` file before trying this extension out.
+
+The recommended settings and their respective values can be found
+[here](https://github.com/Shopify/vscode-shopify-ruby/blob/main/src/configuration.ts#L10).
+
+### Commands
+
+The commands offered to help manage the recommended settings are:
+
+```
+"Ruby extensions pack: Force apply defaults" -> Apply all defaults
+"Ruby extensions pack: Clear cache and recommended settings" -> Clear all cached choices and remove the recommended settings
+```
 
 ## Contributing
 
