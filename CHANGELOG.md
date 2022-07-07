@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.7]
+
+- Add auto-configuration for the ruler (https://github.com/Shopify/vscode-shopify-ruby/pull/146)
+- Add the extension logo (https://github.com/Shopify/vscode-shopify-ruby/pull/152)
+
 ## [0.0.6]
 
 - Save setting when "Apply" is selected (https://github.com/Shopify/vscode-shopify-ruby/pull/143)
