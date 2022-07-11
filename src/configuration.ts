@@ -8,12 +8,12 @@ import {
 import { Setting, OverrideType } from "./setting";
 
 export const DEFAULT_CONFIGS = [
-  { section: "ruby", name: "useBundler", value: true },
-  { section: "ruby", name: "useLanguageServer", value: false },
-  { section: "ruby", name: "lint", value: { rubocop: false } },
-  { section: "ruby", name: "codeCompletion", value: false },
-  { section: "ruby", name: "intellisense", value: false },
-  { section: "ruby", name: "format", value: false },
+  { section: "ruby", name: "useBundler", value: undefined },
+  { section: "ruby", name: "useLanguageServer", value: undefined },
+  { section: "ruby", name: "lint", value: undefined },
+  { section: "ruby", name: "codeCompletion", value: undefined },
+  { section: "ruby", name: "intellisense", value: undefined },
+  { section: "ruby", name: "format", value: undefined },
   {
     scope: { languageId: "ruby" },
     section: "editor",
