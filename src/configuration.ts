@@ -104,7 +104,7 @@ export class Configuration {
 
   async showRebornixDeprecationWarning(): Promise<void> {
     await vscode.window.showWarningMessage(
-      "The rebornix-ruby plugin is deprecated."
+      "The rebornix-ruby plugin is deprecated. Remove any custom configurations for the plugin from your settings."
     );
   }
 
