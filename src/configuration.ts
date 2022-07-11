@@ -102,6 +102,12 @@ export class Configuration {
     }
   }
 
+  async showRebornixDeprecationWarning(): Promise<void> {
+    await vscode.window.showWarningMessage(
+      "The rebornix-ruby plugin is deprecated."
+    );
+  }
+
   clearState() {
     // Clear setting config and cache
     this.settings.forEach((setting) => setting.clear());
