@@ -45,6 +45,12 @@ export const DEFAULT_CONFIGS = [
   { section: "files", name: "trimTrailingWhitespace", value: true },
   { section: "files", name: "insertFinalNewline", value: true },
   { section: "editor", name: "rulers", value: [120] },
+  {
+    scope: { languageId: "ruby" },
+    section: "editor.semanticHighlighting",
+    name: "enabled",
+    value: true,
+  },
 ];
 
 export enum OverridesStatus {
