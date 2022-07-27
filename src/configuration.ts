@@ -8,12 +8,6 @@ import {
 import { Setting, OverrideType } from "./setting";
 
 export const DEFAULT_CONFIGS = [
-  { section: "ruby", name: "useBundler", value: undefined },
-  { section: "ruby", name: "useLanguageServer", value: undefined },
-  { section: "ruby", name: "lint", value: undefined },
-  { section: "ruby", name: "codeCompletion", value: undefined },
-  { section: "ruby", name: "intellisense", value: undefined },
-  { section: "ruby", name: "format", value: undefined },
   {
     scope: { languageId: "ruby" },
     section: "editor",
@@ -54,9 +48,10 @@ export enum OverridesStatus {
 }
 
 export class Configuration {
-  private context: vscode.ExtensionContext;
+  settings: Setting[];
+  context: vscode.ExtensionContext;
+  configurationStore: ConfigurationStore;
   private overrideStatus: OverridesStatus | undefined;
-  private settings: Setting[];
   private allSettingsMatch: boolean;
 
   constructor(
@@ -76,6 +71,7 @@ export class Configuration {
     );
     this.allSettingsMatch = this.settings.every((setting) => setting.match());
     this.context = context;
+    this.configurationStore = configurationStore;
     this.overrideStatus = this.getAproveAll();
   }
 
@@ -100,12 +96,6 @@ export class Configuration {
     } else {
       this.recursivelyPromptSetting(0);
     }
-  }
-
-  async showRebornixDeprecationWarning(): Promise<void> {
-    await vscode.window.showWarningMessage(
-      "The rebornix-ruby plugin is deprecated. Remove any custom configurations for the plugin from your settings."
-    );
   }
 
   clearState() {
