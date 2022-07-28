@@ -58,6 +58,6 @@ export async function showRebornixDeprecationWarning(
           undefined
         )
     );
-    settings.forEach((setting) => setting.update());
+    settings.forEach((setting) => setting.clear());
   }
 }
