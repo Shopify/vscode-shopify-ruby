@@ -28,7 +28,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 export function deactivate() {}
 
-export const DEPRECATED_REBORNIX_RUBY_CONFIG = [
+const DEPRECATED_REBORNIX_RUBY_CONFIG = [
   { section: "ruby", name: "useBundler", value: undefined },
   { section: "ruby", name: "useLanguageServer", value: undefined },
   { section: "ruby", name: "lint", value: undefined },
