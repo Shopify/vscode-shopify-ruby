@@ -43,11 +43,12 @@ export async function showRebornixDeprecationWarning(
   context: vscode.ExtensionContext
 ): Promise<void> {
   const response = await vscode.window.showWarningMessage(
-    "The rebornix-ruby plugin is deprecated - remove any custom configurations for the plugin from your settings.",
-    "Remove configurations"
+    "The Ruby LSP has fully replaced the Ruby plugin functionality. Uninstall the `rebornix.ruby` and the `wingrunr21.vscode-ruby` extensions. Click `Cleanup` to remove related configuration.",
+    "Cleanup",
+    "Cancel"
   );
 
-  if (response === "Remove configurations") {
+  if (response === "Cleanup") {
     const settings = DEPRECATED_REBORNIX_RUBY_CONFIG.map(
       (config) =>
         new Setting(
