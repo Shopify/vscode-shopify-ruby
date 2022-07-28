@@ -7,7 +7,7 @@ export async function activate(context: vscode.ExtensionContext) {
   const configuration = new Configuration(vscode.workspace, context);
 
   if (vscode.extensions.getExtension("rebornix.ruby")) {
-    showRebornixDeprecationWarning(configuration);
+    showRebornixDeprecationWarning(context);
   }
 
   configuration.applyDefaults();
@@ -40,7 +40,7 @@ export const DEPRECATED_REBORNIX_RUBY_CONFIG = [
 // TODO: This function and surrounding code should be
 // removed in the next version after rebornix.ruby is deprecated
 export async function showRebornixDeprecationWarning(
-  configuration: Configuration
+  context: vscode.ExtensionContext
 ): Promise<void> {
   const response = await vscode.window.showWarningMessage(
     "The rebornix-ruby plugin is deprecated - remove any custom configurations for the plugin from your settings.",
@@ -48,17 +48,16 @@ export async function showRebornixDeprecationWarning(
   );
 
   if (response === "Remove configurations") {
-    configuration.settings = DEPRECATED_REBORNIX_RUBY_CONFIG.map(
+    const settings = DEPRECATED_REBORNIX_RUBY_CONFIG.map(
       (config) =>
         new Setting(
-          configuration.context,
-          configuration.configurationStore,
+          context,
+          vscode.workspace,
           config.section,
           config.name,
-          undefined,
           undefined
         )
     );
-    configuration.settings.forEach((setting) => setting.update());
+    settings.forEach((setting) => setting.update());
   }
 }

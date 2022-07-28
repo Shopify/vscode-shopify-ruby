@@ -48,10 +48,9 @@ export enum OverridesStatus {
 }
 
 export class Configuration {
-  settings: Setting[];
-  context: vscode.ExtensionContext;
-  configurationStore: ConfigurationStore;
+  private context: vscode.ExtensionContext;
   private overrideStatus: OverridesStatus | undefined;
+  private settings: Setting[];
   private allSettingsMatch: boolean;
 
   constructor(
@@ -71,7 +70,6 @@ export class Configuration {
     );
     this.allSettingsMatch = this.settings.every((setting) => setting.match());
     this.context = context;
-    this.configurationStore = configurationStore;
     this.overrideStatus = this.getAproveAll();
   }
 
