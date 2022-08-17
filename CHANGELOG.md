@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.8]
+
+- Auto enable semantic highlighting for Ruby (https://github.com/Shopify/vscode-shopify-ruby/pull/185)
+- Remove rebornix.ruby from the pack (https://github.com/Shopify/vscode-shopify-ruby/pull/172)
+
 ## [0.0.7]
 
 - Add auto-configuration for the ruler (https://github.com/Shopify/vscode-shopify-ruby/pull/146)
