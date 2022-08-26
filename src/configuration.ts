@@ -23,6 +23,12 @@ export const DEFAULT_CONFIGS = [
   {
     scope: { languageId: "ruby" },
     section: "editor",
+    name: "formatOnType",
+    value: true,
+  },
+  {
+    scope: { languageId: "ruby" },
+    section: "editor",
     name: "tabSize",
     value: 2,
   },
