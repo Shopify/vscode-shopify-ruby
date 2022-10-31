@@ -64,7 +64,7 @@
     "@types/node": "^18.11.4",
     "@types/uuid": "^8.3.4",
     "@types/vscode": "^1.63.0",
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.40.1",
     "@vscode/test-electron": "^2.2.0",
     "esbuild": "^0.15.12",
