@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-const EXTENSION_NAME = "ruby-extensions-pack";
+export const EXTENSION_NAME = "ruby-extensions-pack";
 const EXTENSION_VERSION = vscode.extensions.getExtension(
   `shopify.${EXTENSION_NAME}`
 )!.packageJSON.version;
