@@ -82,7 +82,7 @@ export class Configuration {
     );
     this.allSettingsMatch = this.settings.every((setting) => setting.match());
     this.context = context;
-    this.overrideStatus = this.getAproveAll();
+    this.overrideStatus = this.getApproveAll();
   }
 
   async applyDefaults(force = false) {
@@ -174,7 +174,7 @@ export class Configuration {
     }
   }
 
-  private getAproveAll(): OverridesStatus | undefined {
+  private getApproveAll(): OverridesStatus | undefined {
     const currentKey: OverridesStatus | undefined =
       this.context.globalState.get(APPROVED_ALL_OVERRIDES_KEY);
 
