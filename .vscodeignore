@@ -15,3 +15,4 @@ tsconfig.json
 .prettierignore
 dev.yml
 *.vsix
+extras/

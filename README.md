@@ -35,6 +35,15 @@ The commands offered to help manage the recommended settings are:
 "Ruby extensions pack: Clear cache and recommended settings" -> Clear all cached choices and remove the recommended settings
 ```
 
+### Themes
+
+Included in this extension is the Spinel dark theme, which is made specifically for Ruby using all of the semantic
+highlighting information provided by the [Ruby LSP](https://github.com/Shopify/ruby-lsp).
+
+<p align="center">
+  <img alt="Example code highlighted with the Spinel theme" src="extras/spinel.png" />
+</p>
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/Shopify/vscode-shopify-ruby.
