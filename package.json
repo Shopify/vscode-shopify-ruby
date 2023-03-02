@@ -9,7 +9,7 @@
     "url": "https://github.com/Shopify/vscode-shopify-ruby"
   },
   "icon": "icon.png",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.63.0"
   },
@@ -25,7 +25,6 @@
     "Shopify.vscode-shadowenv",
     "sorbet.sorbet-vscode-extension",
     "koichisasada.vscode-rdbg",
-    "itarato.byesig",
     "Shopify.ruby-lsp"
   ],
   "contributes": {

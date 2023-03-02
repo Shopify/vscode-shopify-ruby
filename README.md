@@ -12,7 +12,6 @@ This extension pack contains an opinionated collection of pre-configured extensi
 - [shadowenv](https://marketplace.visualstudio.com/items?itemName=Shopify.vscode-shadowenv)
 - [Ruby Sorbet](https://marketplace.visualstudio.com/items?itemName=sorbet.sorbet-vscode-extension)
 - [VSCode rdbg Ruby Debugger](https://marketplace.visualstudio.com/items?itemName=koichisasada.vscode-rdbg)
-- [byesig](https://marketplace.visualstudio.com/items?itemName=itarato.byesig)
 
 ## Usage
 
