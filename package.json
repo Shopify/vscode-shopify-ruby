@@ -25,7 +25,6 @@
     "Shopify.vscode-shadowenv",
     "sorbet.sorbet-vscode-extension",
     "koichisasada.vscode-rdbg",
-    "itarato.byesig",
     "Shopify.ruby-lsp"
   ],
   "contributes": {
