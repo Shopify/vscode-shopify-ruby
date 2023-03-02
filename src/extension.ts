@@ -10,7 +10,8 @@ export async function activate(context: vscode.ExtensionContext) {
     showRebornixDeprecationWarning(context);
   }
 
-  configuration.applyDefaults();
+  await configuration.applyDefaults();
+  await configuration.offerTheme();
 
   context.subscriptions.push(
     vscode.commands.registerCommand(

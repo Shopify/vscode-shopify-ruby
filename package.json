@@ -14,7 +14,9 @@
     "vscode": "^1.63.0"
   },
   "categories": [
-    "Extension Packs"
+    "Extension Packs",
+    "Themes",
+    "Programming Languages"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -35,6 +37,13 @@
       {
         "command": "rubyExtensionsPack.clearState",
         "title": "Ruby extensions pack: Clear cache and recommended settings"
+      }
+    ],
+    "themes": [
+      {
+        "label": "Spinel",
+        "uiTheme": "vs-dark",
+        "path": "./themes/dark_spinel.json"
       }
     ]
   },

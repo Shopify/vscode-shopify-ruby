@@ -4,6 +4,7 @@ import {
   ConfigurationStore,
   APPROVED_ALL_OVERRIDES_KEY,
   SHADOWED_SETTINGS_KEY,
+  EXTENSION_NAME,
 } from "./configurationStore";
 import { Setting, OverrideType } from "./setting";
 
@@ -64,6 +65,7 @@ export class Configuration {
   private overrideStatus: OverridesStatus | undefined;
   private settings: Setting[];
   private allSettingsMatch: boolean;
+  private configurationStore: ConfigurationStore;
 
   constructor(
     configurationStore: ConfigurationStore,
@@ -83,6 +85,7 @@ export class Configuration {
     this.allSettingsMatch = this.settings.every((setting) => setting.match());
     this.context = context;
     this.overrideStatus = this.getApproveAll();
+    this.configurationStore = configurationStore;
   }
 
   async applyDefaults(force = false) {
@@ -106,6 +109,47 @@ export class Configuration {
     } else {
       this.recursivelyPromptSetting(0);
     }
+  }
+
+  async offerTheme() {
+    // Avoid offering to use the new theme more than once
+    if (
+      this.context.globalState.get(`shopify.${EXTENSION_NAME}.offeredTheme`)
+    ) {
+      return;
+    }
+
+    const setting = new Setting(
+      this.context,
+      this.configurationStore,
+      "workbench",
+      "colorTheme",
+      "Spinel"
+    );
+
+    // If the user is already using the new theme, don't offer it
+    if (setting.match()) {
+      this.context.globalState.update(
+        `shopify.${EXTENSION_NAME}.offeredTheme`,
+        true
+      );
+      return;
+    }
+
+    const response = await vscode.window.showInformationMessage(
+      "The new Spinel theme is tailored for Ruby code. Would you like to try it?",
+      "Yes",
+      "No"
+    );
+
+    if (response === "Yes") {
+      setting.update();
+    }
+
+    this.context.globalState.update(
+      `shopify.${EXTENSION_NAME}.offeredTheme`,
+      true
+    );
   }
 
   clearState() {
