@@ -133,7 +133,7 @@ export class Configuration {
     }
 
     const response = await vscode.window.showInformationMessage(
-      "The new Spinel theme is tailored for Ruby code. Would you like to try it?",
+      "The new Spinel theme (dark) is tailored for Ruby code. Would you like to try it?",
       "Yes",
       "No"
     );
