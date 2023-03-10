@@ -76,6 +76,14 @@
     "property.declaration": {
       "foreground": "#eee0e0",
       "fontStyle": ""
+    },
+    "enumMember": {
+      "foreground": "#4b82e9",
+      "fontStyle": ""
+    },
+    "enum": {
+      "foreground": "#4b82e9",
+      "fontStyle": ""
     }
   },
   "tokenColors": [
@@ -100,6 +108,7 @@
         "keyword.operator.increment.ts",
         "keyword.operator.bitwise.shift.ts",
         "keyword.operator.bitwise.ts",
+        "punctuation.separator.key-value.ts",
         "keyword.operator.assignment.js",
         "keyword.operator.relational.js",
         "keyword.operator.increment.js",
@@ -166,6 +175,7 @@
         "storage.type.function.arrow.ts",
         "storage.type.function.ts",
         "storage.type.interface.ts",
+        "storage.type.enum.ts",
         "support.constant.media.css",
         "support.constant.property-value.css",
         "support.constant.font-name.css",
@@ -252,7 +262,9 @@
         "constant.other.reference.link.markdown",
         "string.other.link.title.markdown",
         "meta.selector.css",
-        "entity.name.namespace.rust"
+        "entity.name.namespace.rust",
+        "entity.name.type.enum.ts",
+        "variable.other.readwrite.alias.ts"
       ],
       "settings": {
         "foreground": "#4b82e9",
@@ -286,7 +298,8 @@
         "variable.other.readwrite.class",
         "variable.other.readwrite.instance",
         "punctuation.definition.variable",
-        "variable.other.readwrite.global"
+        "variable.other.readwrite.global",
+        "variable.other.property"
       ],
       "settings": {
         "foreground": "#eee0e0",
