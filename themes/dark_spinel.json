@@ -26,7 +26,8 @@
     "terminal.border": "#404040",
     "titleBar.border": "#404040",
     "editorCursor.foreground": "#d1ccf1",
-    "editorCursor.background": "#404040"
+    "editorCursor.background": "#404040",
+    "editorIndentGuide.activeBackground": "#d1ccf1"
   },
   "semanticTokenColors": {
     "method.declaration": {
