@@ -40,9 +40,14 @@
     ],
     "themes": [
       {
-        "label": "Spinel",
+        "label": "Spinel Dark",
         "uiTheme": "vs-dark",
         "path": "./themes/dark_spinel.json"
+      },
+      {
+        "label": "Spinel Light",
+        "uiTheme": "vs",
+        "path": "./themes/light_spinel.json"
       }
     ]
   },
