@@ -372,6 +372,43 @@
         "foreground": "#ce74f8",
         "fontStyle": "italic"
       }
+    },
+    {
+      "name": "diff: header",
+      "scope": [
+        "meta.diff",
+        "meta.diff.header",
+        "punctuation.definition.to-file.diff",
+        "punctuation.definition.from-file.diff",
+        "punctuation.definition.range.diff"
+      ],
+      "settings": {
+        "fontStyle": "italic",
+        "foreground": "#18B5E4"
+      }
+    },
+    {
+      "name": "diff: deleted",
+      "scope": ["markup.deleted", "punctuation.definition.deleted.diff"],
+      "settings": {
+        "fontStyle": "",
+        "foreground": "#DD5555"
+      }
+    },
+    {
+      "name": "diff: changed",
+      "scope": "markup.changed",
+      "settings": {
+        "fontStyle": "",
+        "foreground": "#FF9A3B"
+      }
+    },
+    {
+      "name": "diff: inserted",
+      "scope": ["markup.inserted", "punctuation.definition.inserted.diff"],
+      "settings": {
+        "foreground": "#5AC16C"
+      }
     }
   ]
 }
