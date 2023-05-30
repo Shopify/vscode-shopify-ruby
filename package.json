@@ -25,7 +25,8 @@
     "Shopify.vscode-shadowenv",
     "sorbet.sorbet-vscode-extension",
     "koichisasada.vscode-rdbg",
-    "Shopify.ruby-lsp"
+    "Shopify.ruby-lsp",
+    "redhat.vscode-yaml"
   ],
   "contributes": {
     "commands": [
