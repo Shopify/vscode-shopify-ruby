@@ -69,7 +69,7 @@
     "@shopify/prettier-config": "^1.1.2",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^20.3.0",
+    "@types/node": "^20.3.1",
     "@types/vscode": "^1.63.0",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/parser": "^5.59.11",
