@@ -1,0 +1,434 @@
+{
+  "name": "Spinel Light",
+  "type": "light",
+  "colors": {
+    "breadcrumb.activeSelectionForeground": "#d2cdf2",
+    "breadcrumb.background": "#d4d3de",
+    "breadcrumb.foreground": "#595959",
+    "editor.background": "#e2dff5",
+    "editor.foreground": "#595959",
+    "editor.lineHighlightBackground": "#dcdaeb",
+    "editor.selectionBackground": "#d4d3de",
+    "editorLineNumber.activeForeground": "#808080",
+    "editorLineNumber.foreground": "#595959",
+    "editorLineNumber.background": "#e2dff5",
+    "notificationToast.border": "#9a99a3",
+    "notifications.border": "#9a99a3",
+    "panel.border": "#9a99a3",
+    "activityBar.background": "#e2dff5",
+    "activityBar.foreground": "#595959",
+    "activityBar.border": "#9a99a3",
+    "activityBar.activeBackground": "#d4d3de",
+    "activityBar.activeBorder": "#9a99a3",
+    "list.activeSelectionBackground": "#d2cdf2",
+    "list.activeSelectionForeground": "#595959",
+    "list.focusAndSelectionOutline": "#9a99a3",
+    "list.focusOutline": "#9a99a3",
+    "list.hoverBackground": "#d4d3de",
+    "list.hoverForeground": "#595959",
+    "menu.background": "#e2dff5",
+    "menu.selectionBorder": "#9a99a3",
+    "menu.selectionBackground": "#d4d3de",
+    "panelTitle.activeBorder": "#595959",
+    "focusBorder": "#9a99a3",
+    "sideBar.background": "#e2dff5",
+    "sideBar.border": "#9a99a3",
+    "sideBarSectionHeader.border": "#9a99a3",
+    "statusBar.background": "#1055d6",
+    "statusBar.border": "#9a99a3",
+    "tab.activeBackground": "#d4d3de",
+    "tab.activeBorder": "#9a99a3",
+    "tab.activeForeground": "#595959",
+    "tab.border": "#9a99a3",
+    "tab.inactiveBackground": "#e2dff5",
+    "tab.inactiveForeground": "#595959",
+    "terminal.background": "#e2dff5",
+    "terminal.border": "#9a99a3",
+    "titleBar.border": "#9a99a3",
+    "editorCursor.foreground": "#595959",
+    "editorCursor.background": "#9a99a3",
+    "editorIndentGuide.activeBackground": "#9a99a3"
+  },
+  "semanticTokenColors": {
+    "method.declaration": {
+      "foreground": "#d431f5"
+    },
+    "function.declaration": {
+      "foreground": "#d431f5"
+    },
+    "function.declaration.async": {
+      "foreground": "#d431f5"
+    },
+    "method": {
+      "foreground": "#595959",
+      "fontStyle": ""
+    },
+    "function": {
+      "foreground": "#595959",
+      "fontStyle": ""
+    },
+    "variable.default_library": {
+      "foreground": "#ed2a88",
+      "fontStyle": "bold"
+    },
+    "namespace": {
+      "foreground": "#284feb",
+      "fontStyle": ""
+    },
+    "class": {
+      "foreground": "#284feb",
+      "fontStyle": ""
+    },
+    "interface": {
+      "foreground": "#284feb"
+    },
+    "variable": {
+      "foreground": "#16a0c9",
+      "fontStyle": ""
+    },
+    "type": {
+      "foreground": "#cc4545",
+      "fontStyle": "bold"
+    },
+    "property": {
+      "foreground": "#eee0e0",
+      "fontStyle": ""
+    },
+    "property.declaration": {
+      "foreground": "#eee0e0",
+      "fontStyle": ""
+    },
+    "enumMember": {
+      "foreground": "#284feb",
+      "fontStyle": ""
+    },
+    "enum": {
+      "foreground": "#284feb",
+      "fontStyle": ""
+    }
+  },
+  "tokenColors": [
+    {
+      "name": "Punctuation, function and method calls",
+      "scope": [
+        "punctuation",
+        "punctuation.section.embedded",
+        "meta.function-call",
+        "punctuation.definition.constant.hashkey",
+        "keyword.operator.assignment.ruby",
+        "entity.name.function.call.cpp",
+        "entity.name.function.member.cpp",
+        "variable.other.property",
+        "meta.brace.round.ts",
+        "meta.brace.square.ts",
+        "keyword.operator.type.ts",
+        "keyword.operator.type.annotation.ts",
+        "meta.function-call.ts",
+        "keyword.operator.assignment.ts",
+        "keyword.operator.relational.ts",
+        "keyword.operator.increment.ts",
+        "keyword.operator.bitwise.shift.ts",
+        "keyword.operator.bitwise.ts",
+        "punctuation.separator.key-value.ts",
+        "keyword.operator.assignment.js",
+        "keyword.operator.relational.js",
+        "keyword.operator.increment.js",
+        "keyword.operator.bitwise.shift.js",
+        "keyword.operator.bitwise.js",
+        "variable.other.object.property.js",
+        "support.variable.property.js",
+        "meta.brace.round.js",
+        "meta.brace.square.js",
+        "keyword.generator.asterisk.js",
+        "keyword.operator.combinator.css",
+        "meta.property-name.css",
+        "punctuation.definition.constant.css",
+        "punctuation.separator.key-value.mapping.yaml",
+        "string.unquoted.plain.out.yaml",
+        "source.sql",
+        "constant.other.table-name.sql",
+        "meta.function.call.rust"
+      ],
+      "settings": {
+        "foreground": "#595959"
+      }
+    },
+    {
+      "name": "Comments",
+      "scope": ["punctuation.definition.comment", "comment"],
+      "settings": {
+        "foreground": "#9c8262",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "YARD documentation",
+      "scope": [
+        "comment.line.keyword.yard",
+        "comment.line.keyword.punctuation.yard",
+        "comment.line.punctuation.yard"
+      ],
+      "settings": {
+        "foreground": "#b0916a",
+        "fontStyle": "italic bold"
+      }
+    },
+    {
+      "name": "Keywords",
+      "scope": [
+        "support.function.kernel.ruby",
+        "keyword.other",
+        "keyword.operator",
+        "keyword.control",
+        "keyword.other.special-method",
+        "punctuation.separator.key-value",
+        "variable.language",
+        "storage.type.variable",
+        "storage.modifier",
+        "storage.type.built-in.primitive.cpp",
+        "storage.type.primitive.cpp",
+        "punctuation.separator.pointer-access.cpp",
+        "punctuation.definition.heading.markdown",
+        "punctuation.definition.constant.markdown",
+        "punctuation.definition.string.begin.markdown",
+        "punctuation.definition.string.end.markdown",
+        "punctuation.definition.list.begin.markdown",
+        "storage.type.function.arrow.ts",
+        "storage.type.function.ts",
+        "storage.type.interface.ts",
+        "storage.type.enum.ts",
+        "support.constant.media.css",
+        "support.constant.property-value.css",
+        "support.constant.font-name.css",
+        "entity.name.type.primitive.rust",
+        "entity.name.type.numeric.rust"
+      ],
+      "settings": {
+        "foreground": "#cc4545"
+      }
+    },
+    {
+      "name": "Parameters",
+      "scope": [
+        "variable.parameter",
+        "constant.other.symbol.hashkey.parameter.function",
+        "variable.other",
+        "comment.line.parameter.yard",
+        "markup.inline.raw.string.markdown",
+        "markup.fenced_code.block.markdown",
+        "entity.other.attribute-name.html",
+        "constant.other.color.rgb-value.hex.css",
+        "support.constant.color.w3c-standard-color-name.css",
+        "constant.other.database-name.sql"
+      ],
+      "settings": {
+        "foreground": "#eb8d36",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Strings",
+      "scope": [
+        "punctuation.definition.string.begin",
+        "punctuation.definition.string.end",
+        "string"
+      ],
+      "settings": {
+        "foreground": "#49a658"
+      }
+    },
+    {
+      "scope": "meta.embedded.line",
+      "settings": {
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Regexp",
+      "scope": ["string.regexp", "punctuation.section.regexp"],
+      "settings": {
+        "foreground": "#79b002",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Numbers",
+      "scope": [
+        "constant.numeric",
+        "keyword.other.unit.em.css",
+        "keyword.other.unit.percentage.css",
+        "keyword.other.unit.rem.css",
+        "keyword.other.unit.px.css"
+      ],
+      "settings": {
+        "foreground": "#bfb23b"
+      }
+    },
+    {
+      "name": "Classes, modules and namespaces",
+      "scope": [
+        "support.class",
+        "meta.class",
+        "entity.name.type.class.ruby",
+        "entity.other.inherited-class.ruby",
+        "entity.name.type.module",
+        "meta.module.ruby",
+        "variable.other.constant",
+        "comment.line.type.yard",
+        "entity.name.scope-resolution.cpp",
+        "entity.name.scope-resolution.template.call.cpp",
+        "entity.name.scope-resolution.parameter.cpp",
+        "entity.name.scope-resolution.function.call.cpp",
+        "markup.heading",
+        "constant.other.reference.link.markdown",
+        "string.other.link.title.markdown",
+        "meta.selector.css",
+        "entity.name.namespace.rust",
+        "entity.name.type.enum.ts",
+        "variable.other.readwrite.alias.ts"
+      ],
+      "settings": {
+        "foreground": "#284feb",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Symbols",
+      "scope": [
+        "constant.other.symbol.ruby",
+        "constant.language.symbol",
+        "constant.other.symbol.hashkey.ruby",
+        "markup.underline.link.markdown",
+        "meta.link.inline.markdown",
+        "support.type.property-name.json",
+        "meta.object-literal.key.ts",
+        "meta.object-literal.key.js",
+        "entity.name.tag.html",
+        "punctuation.separator.key-value.css",
+        "punctuation.terminator.rule.css",
+        "entity.name.tag.yaml"
+      ],
+      "settings": {
+        "foreground": "#4a9e9e",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Instance variables",
+      "scope": [
+        "variable.other.readwrite.class",
+        "variable.other.readwrite.instance",
+        "punctuation.definition.variable",
+        "variable.other.readwrite.global",
+        "variable.other.property"
+      ],
+      "settings": {
+        "foreground": "#5e4e4e",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Language constants and special variables",
+      "scope": ["constant.language", "variable.language.this"],
+      "settings": {
+        "foreground": "#ed2a88",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Local variables",
+      "scope": [
+        "variable",
+        "markup.bold",
+        "punctuation.definition.bold.markdown",
+        "variable.object.property.ts",
+        "variable.other.constant.object.ts",
+        "variable.other.constant.js",
+        "variable.other.constant.object.js"
+      ],
+      "settings": {
+        "foreground": "#16a0c9",
+        "fontStyle": ""
+      }
+    },
+    {
+      "name": "Types",
+      "scope": [
+        "storage.type.ts",
+        "support.type.primitive.ts",
+        "storage.type.class.ts",
+        "storage.type.class.js",
+        "storage.type.function.js",
+        "storage.type.js",
+        "storage.type.function.arrow.js",
+        "constant.language.null.js"
+      ],
+      "settings": {
+        "foreground": "#cc4545",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Method and function definitions",
+      "scope": [
+        "meta.definition.method",
+        "meta.function.method.with-arguments.ruby",
+        "meta.function.method.without-arguments.ruby"
+      ],
+      "settings": {
+        "foreground": "#d431f5"
+      }
+    },
+    {
+      "name": "Method and function calls",
+      "scope": ["meta.function-call"],
+      "settings": {
+        "foreground": "#323333"
+      }
+    },
+    {
+      "scope": "meta.attribute.rust",
+      "settings": {
+        "foreground": "#ce74f8",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "diff: header",
+      "scope": [
+        "meta.diff",
+        "meta.diff.header",
+        "punctuation.definition.to-file.diff",
+        "punctuation.definition.from-file.diff",
+        "punctuation.definition.range.diff"
+      ],
+      "settings": {
+        "fontStyle": "italic",
+        "foreground": "#16a0c9"
+      }
+    },
+    {
+      "name": "diff: deleted",
+      "scope": ["markup.deleted", "punctuation.definition.deleted.diff"],
+      "settings": {
+        "fontStyle": "",
+        "foreground": "#cc4545"
+      }
+    },
+    {
+      "name": "diff: changed",
+      "scope": "markup.changed",
+      "settings": {
+        "fontStyle": "",
+        "foreground": "#eb8d36"
+      }
+    },
+    {
+      "name": "diff: inserted",
+      "scope": ["markup.inserted", "punctuation.definition.inserted.diff"],
+      "settings": {
+        "foreground": "#49a658"
+      }
+    }
+  ]
+}
