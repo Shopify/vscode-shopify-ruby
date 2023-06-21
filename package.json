@@ -40,7 +40,7 @@
     ],
     "themes": [
       {
-        "label": "Spinel Dark",
+        "label": "Spinel",
         "uiTheme": "vs-dark",
         "path": "./themes/dark_spinel.json"
       },
