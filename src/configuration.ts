@@ -39,9 +39,30 @@ export const DEFAULT_CONFIGS = [
     name: "insertSpaces",
     value: true,
   },
-  { section: "files", name: "trimTrailingWhitespace", value: true },
-  { section: "files", name: "insertFinalNewline", value: true },
-  { section: "editor", name: "rulers", value: [120] },
+  {
+    scope: { languageId: "ruby" },
+    section: "files",
+    name: "trimTrailingWhitespace",
+    value: true,
+  },
+  {
+    scope: { languageId: "ruby" },
+    section: "files",
+    name: "insertFinalNewline",
+    value: true,
+  },
+  {
+    scope: { languageId: "ruby" },
+    section: "files",
+    name: "trimFinalNewlines",
+    value: true,
+  },
+  {
+    scope: { languageId: "ruby" },
+    section: "editor",
+    name: "rulers",
+    value: [120],
+  },
   {
     scope: { languageId: "ruby" },
     section: "editor.semanticHighlighting",
