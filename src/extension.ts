@@ -16,14 +16,14 @@ export async function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "rubyExtensionsPack.forceApplyDefaults",
-      () => configuration.applyDefaults(true)
-    )
+      () => configuration.applyDefaults(true),
+    ),
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand("rubyExtensionsPack.clearState", () =>
-      configuration.clearState()
-    )
+      configuration.clearState(),
+    ),
   );
 }
 
@@ -41,12 +41,12 @@ const DEPRECATED_REBORNIX_RUBY_CONFIG = [
 // TODO: This function and surrounding code should be
 // removed in the next version after rebornix.ruby is deprecated
 export async function showRebornixDeprecationWarning(
-  context: vscode.ExtensionContext
+  context: vscode.ExtensionContext,
 ): Promise<void> {
   const response = await vscode.window.showWarningMessage(
     "The Ruby LSP has fully replaced the Ruby plugin functionality. Uninstall the `rebornix.ruby` and the `wingrunr21.vscode-ruby` extensions. Click `Cleanup` to remove related configuration.",
     "Cleanup",
-    "Cancel"
+    "Cancel",
   );
 
   if (response === "Cleanup") {
@@ -57,8 +57,8 @@ export async function showRebornixDeprecationWarning(
           vscode.workspace,
           config.section,
           config.name,
-          undefined
-        )
+          undefined,
+        ),
     );
     settings.forEach((setting) => setting.clear());
   }

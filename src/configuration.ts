@@ -86,7 +86,7 @@ export class Configuration {
 
   constructor(
     configurationStore: ConfigurationStore,
-    context: vscode.ExtensionContext
+    context: vscode.ExtensionContext,
   ) {
     this.settings = DEFAULT_CONFIGS.map(
       (config) =>
@@ -96,8 +96,8 @@ export class Configuration {
           config.section,
           config.name,
           config.value,
-          config.scope
-        )
+          config.scope,
+        ),
     );
     this.allSettingsMatch = this.settings.every((setting) => setting.match());
     this.context = context;
@@ -141,14 +141,14 @@ export class Configuration {
       this.configurationStore,
       "workbench",
       "colorTheme",
-      "Spinel"
+      "Spinel",
     );
 
     // If the user is already using the new theme, don't offer it
     if (setting.match()) {
       this.context.globalState.update(
         `shopify.${EXTENSION_NAME}.offeredTheme`,
-        true
+        true,
       );
       return;
     }
@@ -156,7 +156,7 @@ export class Configuration {
     const response = await vscode.window.showInformationMessage(
       "The new Spinel theme (dark) is tailored for Ruby code. Would you like to try it?",
       "Yes",
-      "No"
+      "No",
     );
 
     if (response === "Yes") {
@@ -165,7 +165,7 @@ export class Configuration {
 
     this.context.globalState.update(
       `shopify.${EXTENSION_NAME}.offeredTheme`,
-      true
+      true,
     );
   }
 
@@ -177,7 +177,7 @@ export class Configuration {
     const existingKeys = this.context.globalState
       .keys()
       .filter((key) =>
-        key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/)
+        key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/),
       );
 
     existingKeys.forEach((key) => {
@@ -211,25 +211,25 @@ export class Configuration {
       "Would you like to apply all of the suggested configuration defaults?",
       "Apply All",
       "Decide for each",
-      "Cancel"
+      "Cancel",
     );
 
     if (response === "Apply All") {
       this.context.globalState.update(
         APPROVED_ALL_OVERRIDES_KEY,
-        OverridesStatus.ApprovedAll
+        OverridesStatus.ApprovedAll,
       );
       return OverridesStatus.ApprovedAll;
     } else if (response === "Decide for each") {
       this.context.globalState.update(
         APPROVED_ALL_OVERRIDES_KEY,
-        OverridesStatus.ApproveEach
+        OverridesStatus.ApproveEach,
       );
       return OverridesStatus.ApproveEach;
     } else {
       this.context.globalState.update(
         APPROVED_ALL_OVERRIDES_KEY,
-        OverridesStatus.Cancel
+        OverridesStatus.Cancel,
       );
       return OverridesStatus.Cancel;
     }
@@ -247,7 +247,7 @@ export class Configuration {
     // Otherwise, try to find a previous override status
     const existingKeys = this.context.globalState.keys();
     const previousApprovalKey = existingKeys.find((key) =>
-      key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/)
+      key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/),
     );
 
     if (previousApprovalKey === undefined) {
@@ -267,7 +267,7 @@ export class Configuration {
 
       this.context.globalState.update(
         APPROVED_ALL_OVERRIDES_KEY,
-        OverridesStatus.ApprovedAll
+        OverridesStatus.ApprovedAll,
       );
       return OverridesStatus.ApprovedAll;
     }
@@ -283,7 +283,7 @@ export class Configuration {
     }
 
     const shadowedSettings = this.settings.filter(
-      (setting) => setting.shadowedByWorkspaceSetting
+      (setting) => setting.shadowedByWorkspaceSetting,
     );
 
     if (shadowedSettings.length > 0) {
@@ -293,7 +293,7 @@ export class Configuration {
       this.context.workspaceState.update(SHADOWED_SETTINGS_KEY, true);
 
       vscode.window.showWarningMessage(
-        `These settings won't take effect because they are overridden by .vscode/settings.json: ${names}`
+        `These settings won't take effect because they are overridden by .vscode/settings.json: ${names}`,
       );
     }
   }

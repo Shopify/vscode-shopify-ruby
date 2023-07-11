@@ -32,7 +32,7 @@ export class Setting {
     section: string,
     name: string,
     value: any,
-    scope?: { languageId: string }
+    scope?: { languageId: string },
   ) {
     this.context = context;
     this.configurationStore = configurationStore;
@@ -43,7 +43,7 @@ export class Setting {
 
     this.configurationEntry = this.configurationStore.getConfiguration(
       this.section,
-      this.scope
+      this.scope,
     );
     this.existingConfig = this.configurationEntry.inspect(this.name);
     this.shadowedByWorkspaceSetting = this.shadowed();
@@ -71,7 +71,7 @@ export class Setting {
         this.name,
         this.value,
         type === OverrideType.Global || type === OverrideType.ApplyNew,
-        true
+        true,
       );
     }
   }
@@ -88,7 +88,7 @@ export class Setting {
     this.configurationEntry.update(this.name, undefined, true, true);
     this.context.globalState.update(
       `${CANCELLED_OVERRIDES_KEY}.${this.name}`,
-      undefined
+      undefined,
     );
   }
 
@@ -128,13 +128,13 @@ export class Setting {
 
     const response = await vscode.window.showInformationMessage(
       message,
-      ...options
+      ...options,
     );
 
     if (response === "Cancel") {
       this.context.globalState.update(
         `${CANCELLED_OVERRIDES_KEY}.${this.name}`,
-        true
+        true,
       );
     }
 
@@ -152,20 +152,20 @@ export class Setting {
       this.existingConfig &&
         (this.valuesAreDifferent(
           this.existingConfig.workspaceValue,
-          this.value
+          this.value,
         ) ||
           this.valuesAreDifferent(
             this.existingConfig.workspaceFolderValue,
-            this.value
+            this.value,
           ) ||
           this.valuesAreDifferent(
             this.existingConfig.workspaceLanguageValue,
-            this.value
+            this.value,
           ) ||
           this.valuesAreDifferent(
             this.existingConfig.workspaceFolderLanguageValue,
-            this.value
-          ))
+            this.value,
+          )),
     );
   }
 }
