@@ -44,7 +44,8 @@ export async function showRebornixDeprecationWarning(
   context: vscode.ExtensionContext,
 ): Promise<void> {
   const response = await vscode.window.showWarningMessage(
-    "The Ruby LSP has fully replaced the Ruby plugin functionality. Uninstall the `rebornix.ruby` and the `wingrunr21.vscode-ruby` extensions. Click `Cleanup` to remove related configuration.",
+    "The Ruby LSP has fully replaced the Ruby plugin functionality. Uninstall the `rebornix.ruby` and the " +
+      "`wingrunr21.vscode-ruby` extensions. Click `Cleanup` to remove related configuration.",
     "Cleanup",
     "Cancel",
   );

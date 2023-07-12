@@ -107,7 +107,9 @@ export class Setting {
       this.existingConfig === undefined ||
       this.existingConfig?.globalValue === undefined
     ) {
-      message = `No configuration found for ${this.fullName()}. Would you like to apply the suggested default (${this.printableValue()})?`;
+      message =
+        `No configuration found for ${this.fullName()}. ` +
+        `Would you like to apply the suggested default (${this.printableValue()})?`;
       exists = false;
     }
 
