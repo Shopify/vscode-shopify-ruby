@@ -14,13 +14,13 @@ suite("Configuration suite", () => {
   test("automatic configuration sets defaults", () => {
     const extensionName = "ruby-extensions-pack";
     const extensionVersion = vscode.extensions.getExtension(
-      `shopify.${extensionName}`
+      `shopify.${extensionName}`,
     )!.packageJSON.version;
 
     const globalState = new FakeGlobalState();
     globalState.update(
       `shopify.${extensionName}.${extensionVersion}.approved_all_overrides`,
-      OverridesStatus.ApprovedAll
+      OverridesStatus.ApprovedAll,
     );
 
     const context = {
@@ -38,14 +38,14 @@ suite("Configuration suite", () => {
   test("previous approvals are cleaned up if all settings match", () => {
     const extensionName = "ruby-extensions-pack";
     const extensionVersion = vscode.extensions.getExtension(
-      `shopify.${extensionName}`
+      `shopify.${extensionName}`,
     )!.packageJSON.version;
 
     // Save an approval from a previous extension version
     const globalState = new FakeGlobalState();
     globalState.update(
       `shopify.${extensionName}.0.0.1.approved_all_overrides`,
-      OverridesStatus.ApprovedAll
+      OverridesStatus.ApprovedAll,
     );
 
     const context = { globalState } as unknown as vscode.ExtensionContext;
@@ -61,7 +61,7 @@ suite("Configuration suite", () => {
     assert.strictEqual(1, globalState.keys().length);
     assert.strictEqual(
       globalState.get(`shopify.${extensionName}.0.0.1.approved_all_overrides`),
-      OverridesStatus.ApprovedAll
+      OverridesStatus.ApprovedAll,
     );
 
     const config = new Configuration(store, context);
@@ -71,26 +71,26 @@ suite("Configuration suite", () => {
     assert.strictEqual(1, globalState.keys().length);
     assert.strictEqual(
       globalState.get(`shopify.${extensionName}.0.0.1.approved_all_overrides`),
-      undefined
+      undefined,
     );
     assert.strictEqual(
       globalState.get(
-        `shopify.${extensionName}.${extensionVersion}.approved_all_overrides`
+        `shopify.${extensionName}.${extensionVersion}.approved_all_overrides`,
       ),
-      OverridesStatus.ApprovedAll
+      OverridesStatus.ApprovedAll,
     );
   });
 
   test("clearState deletes all settings and cache", () => {
     const extensionName = "ruby-extensions-pack";
     const extensionVersion = vscode.extensions.getExtension(
-      `shopify.${extensionName}`
+      `shopify.${extensionName}`,
     )!.packageJSON.version;
 
     const globalState = new FakeGlobalState();
     globalState.update(
       `shopify.${extensionName}.${extensionVersion}.approved_all_overrides`,
-      OverridesStatus.ApprovedAll
+      OverridesStatus.ApprovedAll,
     );
 
     const context = { globalState } as unknown as vscode.ExtensionContext;

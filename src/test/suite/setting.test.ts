@@ -20,7 +20,7 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     assert.strictEqual(setting.match(), true);
@@ -38,7 +38,7 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     assert.strictEqual(setting.match(), false);
@@ -52,7 +52,7 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     assert.strictEqual(setting.needsOverride(), true);
@@ -70,7 +70,7 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     assert.strictEqual(setting.needsOverride(), true);
@@ -88,7 +88,7 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     assert.strictEqual(setting.needsOverride(), false);
@@ -106,18 +106,18 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     setting.update();
 
     assert.strictEqual(
       store.get("editor", "defaultFormatter"),
-      "Shopify.ruby-lsp"
+      "Shopify.ruby-lsp",
     );
     assert.strictEqual(
       store.get("editor", "defaultFormatter", false),
-      undefined
+      undefined,
     );
   });
 
@@ -129,18 +129,18 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     setting.update(OverrideType.Both);
 
     assert.strictEqual(
       store.get("editor", "defaultFormatter"),
-      "Shopify.ruby-lsp"
+      "Shopify.ruby-lsp",
     );
     assert.strictEqual(
       store.get("editor", "defaultFormatter", false),
-      "Shopify.ruby-lsp"
+      "Shopify.ruby-lsp",
     );
   });
 
@@ -152,7 +152,7 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     setting.update(OverrideType.Workspace);
@@ -160,7 +160,7 @@ suite("Setting suite", () => {
     assert.strictEqual(store.get("editor", "defaultFormatter"), undefined);
     assert.strictEqual(
       store.get("editor", "defaultFormatter", false),
-      "Shopify.ruby-lsp"
+      "Shopify.ruby-lsp",
     );
   });
 
@@ -171,7 +171,7 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     assert.strictEqual(setting.fullName(), "editor.defaultFormatter");
@@ -184,7 +184,7 @@ suite("Setting suite", () => {
       "section",
       "name",
       { key: "value" },
-      undefined
+      undefined,
     );
 
     assert.strictEqual(setting.printableValue(), '{"key":"value"}');
@@ -195,7 +195,7 @@ suite("Setting suite", () => {
     store.addToWorkspace(
       "editor",
       "defaultFormatter",
-      "Shopify.other-formatter"
+      "Shopify.other-formatter",
     );
 
     const setting = new Setting(
@@ -204,7 +204,7 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     assert.strictEqual(setting.shadowedByWorkspaceSetting, true);
@@ -226,7 +226,7 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     setting.clear();
@@ -249,13 +249,13 @@ suite("Setting suite", () => {
       "editor",
       "defaultFormatter",
       "Shopify.ruby-lsp",
-      undefined
+      undefined,
     );
 
     setting.clear();
     assert.strictEqual(
       globalState.get(`${CANCELLED_OVERRIDES_KEY}.defaultFormatter`),
-      undefined
+      undefined,
     );
   });
 });

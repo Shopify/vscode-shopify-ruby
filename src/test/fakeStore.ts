@@ -25,7 +25,7 @@ export default class FakeStore implements ConfigurationStore {
 
   getConfiguration(
     section: string,
-    _scope: vscode.ConfigurationScope | null | undefined
+    _scope: vscode.ConfigurationScope | null | undefined,
   ): ConfigurationEntry {
     return {
       update: (
@@ -36,7 +36,7 @@ export default class FakeStore implements ConfigurationStore {
           | vscode.ConfigurationTarget
           | null
           | undefined,
-        _overrideInLanguage: boolean | undefined
+        _overrideInLanguage: boolean | undefined,
       ) => {
         if (configurationTarget) {
           return (this.storage[`${section}.${name}`] = value);

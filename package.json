@@ -83,9 +83,10 @@
     "esbuild": "^0.18.11",
     "eslint": "^8.44.0",
     "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-prettier": "^5.0.0",
     "glob": "^10.3.3",
     "mocha": "^10.2.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "typescript": "^5.1.3"
   }
 }

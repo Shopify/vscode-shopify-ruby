@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     "consistent-return": "off",
     "no-warning-comments": "off",
+    "max-len": ["error", { "code": 120 }],
     ...developmentOverrides,
   },
   settings: {
