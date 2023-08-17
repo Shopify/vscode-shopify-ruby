@@ -52,7 +52,7 @@ suite("Configuration suite", () => {
     const store = new FakeStore();
 
     // Update all settings to match the expected
-    DEFAULT_CONFIGS.forEach(async ({ scope, section, name, value }) => {
+    DEFAULT_CONFIGS.forEach(({ scope, section, name, value }) => {
       const entry = store.getConfiguration(section, scope);
       entry.update(name, value, true, true);
     });

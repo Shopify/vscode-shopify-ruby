@@ -78,11 +78,11 @@ export enum OverridesStatus {
 }
 
 export class Configuration {
-  private context: vscode.ExtensionContext;
+  private readonly context: vscode.ExtensionContext;
   private overrideStatus: OverridesStatus | undefined;
-  private settings: Setting[];
-  private allSettingsMatch: boolean;
-  private configurationStore: ConfigurationStore;
+  private readonly settings: Setting[];
+  private readonly allSettingsMatch: boolean;
+  private readonly configurationStore: ConfigurationStore;
 
   constructor(
     configurationStore: ConfigurationStore,
@@ -177,7 +177,7 @@ export class Configuration {
     const existingKeys = this.context.globalState
       .keys()
       .filter((key) =>
-        key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/),
+        /shopify\.ruby-extensions-pack\..*\.approved_all_overrides/.exec(key),
       );
 
     existingKeys.forEach((key) => {
@@ -247,7 +247,7 @@ export class Configuration {
     // Otherwise, try to find a previous override status
     const existingKeys = this.context.globalState.keys();
     const previousApprovalKey = existingKeys.find((key) =>
-      key.match(/shopify\.ruby-extensions-pack\..*\.approved_all_overrides/),
+      /shopify\.ruby-extensions-pack\..*\.approved_all_overrides/.exec(key),
     );
 
     if (previousApprovalKey === undefined) {
