@@ -18,13 +18,13 @@ export enum OverrideType {
 export class Setting {
   public name: string;
   public shadowedByWorkspaceSetting: boolean;
-  private section: string;
-  private value: any;
-  private scope?: { languageId: string };
-  private configurationStore: ConfigurationStore;
-  private configurationEntry: ConfigurationEntry;
-  private existingConfig: ConfigurationInfo;
-  private context: vscode.ExtensionContext;
+  private readonly section: string;
+  private readonly value: any;
+  private readonly scope?: { languageId: string };
+  private readonly configurationStore: ConfigurationStore;
+  private readonly configurationEntry: ConfigurationEntry;
+  private readonly existingConfig: ConfigurationInfo;
+  private readonly context: vscode.ExtensionContext;
 
   constructor(
     context: vscode.ExtensionContext,
@@ -105,7 +105,7 @@ export class Setting {
     let exists = true;
     if (
       this.existingConfig === undefined ||
-      this.existingConfig?.globalValue === undefined
+      this.existingConfig.globalValue === undefined
     ) {
       message =
         `No configuration found for ${this.fullName()}. ` +

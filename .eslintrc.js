@@ -11,11 +11,18 @@ const developmentOverrides = isVsCode
   : {};
 
 module.exports = {
-  extends: ["plugin:@shopify/typescript", "plugin:@shopify/prettier"],
+  extends: [
+    "plugin:@shopify/typescript",
+    "plugin:@shopify/typescript-type-checking",
+    "plugin:@shopify/prettier",
+  ],
+  parserOptions: {
+    project: "tsconfig.json",
+  },
   rules: {
     "consistent-return": "off",
     "no-warning-comments": "off",
-    "max-len": ["error", { "code": 120 }],
+    "max-len": ["error", { code: 120 }],
     ...developmentOverrides,
   },
   settings: {
