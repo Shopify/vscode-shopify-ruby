@@ -11,3 +11,8 @@ updates:
       - "Shopify/sorbet"
     ignore:
       - dependency-name: "@types/vscode"
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
