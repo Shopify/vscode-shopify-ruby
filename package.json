@@ -68,12 +68,12 @@
     "ws": ">= 7.4.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.23.3",
     "@shopify/eslint-plugin": "^43.0.0",
     "@shopify/prettier-config": "^1.1.2",
     "@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.3",
-    "@types/node": "^20.8.10",
+    "@types/mocha": "^10.0.4",
+    "@types/node": "^20.9.0",
     "@types/vscode": "^1.63.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -85,7 +85,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
-    "prettier": "^3.0.3",
+    "prettier": "^3.1.0",
     "typescript": "^5.2.2"
   }
 }
