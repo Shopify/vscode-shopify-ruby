@@ -72,20 +72,20 @@
     "@shopify/eslint-plugin": "^43.0.0",
     "@shopify/prettier-config": "^1.1.2",
     "@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.4",
-    "@types/node": "^20.9.2",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.0",
     "@types/vscode": "^1.63.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
-    "@vscode/test-electron": "^2.3.6",
+    "@vscode/test-electron": "^2.3.8",
     "@vscode/vsce": "^2.22.0",
-    "esbuild": "^0.19.6",
+    "esbuild": "^0.19.8",
     "eslint": "^8.54.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-prettier": "^5.0.1",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
     "prettier": "^3.1.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.2"
   }
 }
