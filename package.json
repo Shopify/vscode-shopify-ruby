@@ -1,6 +1,6 @@
 {
   "name": "ruby-extensions-pack",
-  "displayName": "Ruby",
+  "displayName": "Ruby extension pack",
   "description": "An opinionated and auto-configured set of extensions for Ruby development",
   "license": "MIT",
   "publisher": "Shopify",
@@ -30,11 +30,11 @@
     "commands": [
       {
         "command": "rubyExtensionsPack.forceApplyDefaults",
-        "title": "Ruby extensions pack: Force apply defaults"
+        "title": "Ruby extension pack: Force apply defaults"
       },
       {
         "command": "rubyExtensionsPack.clearState",
-        "title": "Ruby extensions pack: Clear cache and recommended settings"
+        "title": "Ruby extension pack: Clear cache and recommended settings"
       }
     ],
     "themes": [
