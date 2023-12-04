@@ -30,8 +30,8 @@ in the extension [configuration file](https://github.com/Shopify/vscode-shopify-
 The commands offered to help manage the recommended settings are:
 
 ```
-"Ruby extensions pack: Force apply defaults" -> Apply all defaults
-"Ruby extensions pack: Clear cache and recommended settings" -> Clear all cached choices and remove the recommended settings
+"Ruby extension pack: Force apply defaults" -> Apply all defaults
+"Ruby extension pack: Clear cache and recommended settings" -> Clear all cached choices and remove the recommended settings
 ```
 
 ### Themes
@@ -65,8 +65,8 @@ code of conduct.
 3. On VS Code's run and debug tab, select the `Extension` task
 4. This will open a second VS Code window where the development version of the extension is running. Use it to verify
    that the extension is working as expected
-5. If needed, the cache and recommended settings can be cleared by running the `Ruby extensions pack: Clear cache`
-   command. This will make the extension prompt overrides again
+5. If needed, the cache and recommended settings can be cleared by running the
+   `Ruby extension pack: Clear cache and recommended settings` command. This will make the extension prompt overrides again
 
 ### Debugging
 
