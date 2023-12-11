@@ -3,8 +3,8 @@ import * as vscode from "vscode";
 import { ConfigurationEntry, ConfigurationStore } from "../configurationStore";
 
 export default class FakeStore implements ConfigurationStore {
-  private storage: { [key: string]: any } = {};
-  private workspaceStorage: { [key: string]: any } = {};
+  private storage: Record<string, any> = {};
+  private workspaceStorage: Record<string, any> = {};
 
   constructor() {
     this.storage = {};

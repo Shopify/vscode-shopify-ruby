@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 
 export default class FakeGlobalState implements vscode.Memento {
-  private storage: { [key: string]: any } = {};
+  private storage: Record<string, any> = {};
 
   constructor() {
     this.storage = {};
