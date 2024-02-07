@@ -98,6 +98,7 @@
         "keyword.operator.assignment.ruby",
         "entity.name.function.call.cpp",
         "entity.name.function.member.cpp",
+        "variable.other.object.property",
         "variable.other.property",
         "meta.brace.round.ts",
         "meta.brace.square.ts",
