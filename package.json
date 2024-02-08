@@ -1,6 +1,6 @@
 {
   "name": "ruby-extensions-pack",
-  "displayName": "Ruby extension pack",
+  "displayName": "Ruby",
   "description": "An opinionated and auto-configured set of extensions for Ruby development",
   "license": "MIT",
   "publisher": "Shopify",
