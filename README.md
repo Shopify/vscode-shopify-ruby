@@ -10,8 +10,9 @@ This extension pack contains an opinionated collection of pre-configured extensi
 
 - [Ruby LSP](https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-lsp)
 - [VSCode rdbg Ruby Debugger](https://marketplace.visualstudio.com/items?itemName=koichisasada.vscode-rdbg)
+- [Ruby Sorbet](https://marketplace.visualstudio.com/items?itemName=sorbet.sorbet-vscode-extension)
 
-Notice that [Ruby Sorbet](https://marketplace.visualstudio.com/items?itemName=sorbet.sorbet-vscode-extension) will only be activated if your project is onboarded to the [Sorbet type checker](https://sorbet.org/). Otherwise, the extension is never activated.
+Note that the Sorbet extension will only be activated if your project is onboarded to the [Sorbet type checker](https://sorbet.org/). Also, the Ruby LSP extension includes a debugger for common debugging use-cases. You may need to use the Ruby Debugger extension for certain scenarios.
 
 ## Usage
 
