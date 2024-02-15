@@ -14,6 +14,13 @@ This extension pack contains an opinionated collection of pre-configured extensi
 
 Note that the Sorbet extension will only be activated if your project is onboarded to the [Sorbet type checker](https://sorbet.org/). Also, the Ruby LSP extension includes a debugger for common debugging use-cases. You may need to use the Ruby Debugger extension for certain scenarios.
 
+> [!NOTE]
+> This extension does not implement any Ruby related features. It's just a pack containing other extensions, which are
+> the ones that deliver the features.
+> If you encounter Sorbet related issues, please report them in https://github.com/sorbet/sorbet
+> If you are using RDBG to debug and encounter issues, please report them in https://github.com/ruby/vscode-rdbg
+> For other Ruby development issues, please report them in https://github.com/Shopify/vscode-ruby-lsp
+
 ## Usage
 
 Search for
