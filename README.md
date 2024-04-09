@@ -33,6 +33,15 @@ You may want to backup your `settings.json` file before trying this extension ou
 The recommended settings and their respective values can be found
 in the extension [configuration file](https://github.com/Shopify/vscode-shopify-ruby/blob/main/src/configuration.ts#L10).
 
+If using Rubocop, make sure to add rubocop in your Gemfile to get VS Code formatter to work.
+
+```ruby
+# Gemfile
+group :development do
+  gem "rubocop"
+end
+```
+
 ### Commands
 
 The commands offered to help manage the recommended settings are:
