@@ -9,7 +9,7 @@ updates:
       timezone: America/New_York
     open-pull-requests-limit: 100
     reviewers:
-      - "Shopify/sorbet"
+      - "Shopify/ruby-dx"
     ignore:
       - dependency-name: "@types/vscode"
     groups:
