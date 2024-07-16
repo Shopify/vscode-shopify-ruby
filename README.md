@@ -6,7 +6,7 @@
 
 # VS Code Shopify Ruby
 
-This extension pack contains an opinionated collection of pre-configured extensions for Ruby development in VS Code:
+This extension pack contains an opinionated collection of extensions for Ruby development in VS Code:
 
 - [Ruby LSP](https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-lsp)
 - [VSCode rdbg Ruby Debugger](https://marketplace.visualstudio.com/items?itemName=koichisasada.vscode-rdbg)
@@ -26,21 +26,6 @@ Note that the Sorbet extension will only be activated if your project is onboard
 Search for
 [`Shopify.ruby-extensions-pack`](https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-extensions-pack) in
 the extensions tab and click install.
-
-When activated, this extension will prompt you about overriding your existing configuration to use the recommended defaults.
-You may want to backup your `settings.json` file before trying this extension out.
-
-The recommended settings and their respective values can be found
-in the extension [configuration file](https://github.com/Shopify/vscode-shopify-ruby/blob/main/src/configuration.ts#L10).
-
-### Commands
-
-The commands offered to help manage the recommended settings are:
-
-```
-"Ruby extension pack: Force apply defaults" -> Apply all defaults
-"Ruby extension pack: Clear cache and recommended settings" -> Clear all cached choices and remove the recommended settings
-```
 
 ### Themes
 

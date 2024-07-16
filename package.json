@@ -27,16 +27,6 @@
     "Shopify.ruby-lsp"
   ],
   "contributes": {
-    "commands": [
-      {
-        "command": "rubyExtensionsPack.forceApplyDefaults",
-        "title": "Ruby extension pack: Force apply defaults"
-      },
-      {
-        "command": "rubyExtensionsPack.clearState",
-        "title": "Ruby extension pack: Clear cache and recommended settings"
-      }
-    ],
     "themes": [
       {
         "label": "Spinel",
