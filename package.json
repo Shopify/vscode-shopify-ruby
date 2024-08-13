@@ -23,7 +23,6 @@
   ],
   "extensionPack": [
     "sorbet.sorbet-vscode-extension",
-    "koichisasada.vscode-rdbg",
     "Shopify.ruby-lsp"
   ],
   "contributes": {
