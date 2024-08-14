@@ -17,8 +17,8 @@ async function offerTheme(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration("workbench");
   const theme = config.get("colorTheme");
 
-  // If the user is already using the new theme, don't offer it
-  if (theme !== "Spinel") {
+  // If the user has already set a custom theme other than the default, then don't offer to change it
+  if (theme === "Default Dark Modern") {
     await context.globalState.update(cacheKey, true);
     return;
   }
