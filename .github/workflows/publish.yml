@@ -14,7 +14,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "20.16.0"
           cache: "yarn"
 
       - name: 📦 Install dependencies
@@ -27,3 +27,8 @@ jobs:
         run: node_modules/.bin/vsce publish --packagePath vscode-shopify-ruby.vsix
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Publish extension on OpenVSX
+        run: |
+          yarn run package
+          node_modules/.bin/ovsx publish vscode-shopify-ruby.vsix -p ${{ secrets.OPENVSX_TOKEN }} --yarn
