@@ -17,7 +17,7 @@ Note that the Sorbet extension will only be activated if your project is onboard
 > This extension does not implement any Ruby related features. It's just a pack containing other extensions, which are
 > the ones that deliver the features.
 > If you encounter Sorbet related issues, please report them in https://github.com/sorbet/sorbet
-> For other Ruby development issues, please report them in https://github.com/Shopify/vscode-ruby-lsp
+> For other Ruby development issues, please report them in https://github.com/Shopify/ruby-lsp
 
 ## Usage
 
