@@ -16,7 +16,7 @@
     "sideBar.background": "#282828",
     "sideBar.border": "#404040",
     "sideBarSectionHeader.border": "#404040",
-    "statusBar.background": "#1055d6",
+    "statusBar.background": "#333333",
     "statusBar.border": "#404040",
     "tab.activeBackground": "#4b4b4b",
     "tab.activeBorder": "#d1ccf1",
@@ -287,7 +287,8 @@
         "entity.name.tag.html",
         "punctuation.separator.key-value.css",
         "punctuation.terminator.rule.css",
-        "entity.name.tag.yaml"
+        "entity.name.tag.yaml",
+        "constant.other.symbol.hashkey.parameter.function.rbs"
       ],
       "settings": {
         "foreground": "#7dcfcf",
@@ -342,7 +343,8 @@
         "storage.type.function.js",
         "storage.type.js",
         "storage.type.function.arrow.js",
-        "constant.language.null.js"
+        "constant.language.null.js",
+        "support.type.builtin.rbs"
       ],
       "settings": {
         "foreground": "#dd5555",
