@@ -64,7 +64,7 @@
     "@shopify/prettier-config": "^1.1.2",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.13.5",
+    "@types/node": "^22.13.8",
     "@types/vscode": "^1.63.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -77,7 +77,7 @@
     "glob": "^11.0.1",
     "mocha": "^11.1.0",
     "ovsx": "^0.10.1",
-    "prettier": "^3.5.2",
-    "typescript": "^5.7.3"
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
   }
 }
