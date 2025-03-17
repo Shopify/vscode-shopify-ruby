@@ -72,7 +72,7 @@
     "@vscode/vsce": "^3.2.2",
     "esbuild": "^0.25.1",
     "eslint": "^8.57.0",
-    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-import-resolver-typescript": "^4.1.1",
     "eslint-plugin-prettier": "^5.2.3",
     "glob": "^11.0.1",
     "mocha": "^11.1.0",
