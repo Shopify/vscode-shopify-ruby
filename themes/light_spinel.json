@@ -21,7 +21,7 @@
     "activityBar.activeBackground": "#d8d8db",
     "activityBar.activeBorder": "#acabb3",
     "list.activeSelectionBackground": "#cdccd3",
-    "list.inactiveSelectionBackground": "#cdccd3",
+    "list.inactiveSelectionBackground": "#d8d8db",
     "list.activeSelectionForeground": "#595959",
     "list.inactiveSelectionForeground": "#595959",
     "list.focusAndSelectionOutline": "#acabb3",
