@@ -59,11 +59,11 @@
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.31.0",
+    "@eslint/js": "^9.32.0",
     "@shopify/eslint-plugin": "^48.0.2",
     "@shopify/prettier-config": "^1.1.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^24.0.15",
+    "@types/node": "^24.2.0",
     "@types/vscode": "^1.63.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -77,6 +77,6 @@
     "mocha": "^11.7.1",
     "ovsx": "^0.10.5",
     "prettier": "^3.6.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   }
 }
