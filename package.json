@@ -57,13 +57,13 @@
     "ws": ">= 7.4.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.6",
+    "@babel/core": "^7.29.0",
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
     "@shopify/eslint-plugin": "^48.0.2",
     "@shopify/prettier-config": "^1.1.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^25.0.10",
+    "@types/node": "^25.2.0",
     "@types/vscode": "^1.63.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
