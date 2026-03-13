@@ -76,6 +76,10 @@
       "foreground": "#ed2a88",
       "fontStyle": "bold"
     },
+    "variable.defaultLibrary": {
+      "foreground": "#ed2a88",
+      "fontStyle": "bold"
+    },
     "namespace": {
       "foreground": "#1e45e0",
       "fontStyle": ""
