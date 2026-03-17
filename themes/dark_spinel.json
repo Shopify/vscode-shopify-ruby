@@ -47,7 +47,7 @@
       "foreground": "#d1ccf1",
       "fontStyle": ""
     },
-    "variable.default_library": {
+    "variable.defaultLibrary": {
       "foreground": "#ed2a88",
       "fontStyle": "bold"
     },
