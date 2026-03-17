@@ -110,6 +110,17 @@
     "enum": {
       "foreground": "#1e45e0",
       "fontStyle": ""
+    },
+    "struct": {
+      "foreground": "#4b82e9"
+    },
+    "selfTypeKeyword": {
+      "foreground": "#ed2a88",
+      "fontStyle": "bold"
+    },
+    "selfKeyword": {
+      "foreground": "#ed2a88",
+      "fontStyle": "bold"
     }
   },
   "tokenColors": [
@@ -152,7 +163,11 @@
         "string.unquoted.plain.out.yaml",
         "source.sql",
         "constant.other.table-name.sql",
-        "meta.function.call.rust"
+        "meta.function.call.rust",
+        "keyword.operator.key-value.rust",
+        "keyword.operator.assignment.c",
+        "keyword.operator.comparison.c",
+        "keyword.operator.increment.c"
       ],
       "settings": {
         "foreground": "#595959"
@@ -190,6 +205,7 @@
         "variable.language",
         "storage.type.variable",
         "storage.modifier",
+        "storage.type.built-in.primitive.c",
         "storage.type.built-in.primitive.cpp",
         "storage.type.primitive.cpp",
         "punctuation.separator.pointer-access.cpp",
