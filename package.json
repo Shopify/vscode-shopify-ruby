@@ -9,7 +9,7 @@
     "url": "https://github.com/Shopify/vscode-shopify-ruby"
   },
   "icon": "icon.png",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "engines": {
     "vscode": "^1.63.0"
   },
