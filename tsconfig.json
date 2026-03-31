@@ -11,7 +11,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["node", "mocha"]
   },
   "exclude": ["node_modules", ".vscode-test"]
 }
