@@ -942,10 +942,10 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-10.0.10.tgz#91f62905e8d23cbd66225312f239454a23bebfa0"
   integrity sha512-xPyYSz1cMPnJQhl0CLMH68j3gprKZaTjG3s5Vi+fDgx+uhG9NOXwbVt52eFS8ECyXhyKcjDLCBEqBExKuiZb7Q==
 
-"@types/node@^25.9.2":
-  version "25.9.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-25.9.2.tgz#fc8958e757994b71fee516f9634bdb03d1b19e9f"
-  integrity sha512-G05zqtJhcDLb8uslf5EjCxXg9G1KQxiV8OS0R26IC//Eoyitzqe8z37I7cqvnZlrlSfgocQRfSn/AHBZJJFyGw==
+"@types/node@^25.9.3":
+  version "25.9.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-25.9.3.tgz#11dfe7a33e68fa5c560f0aa76cc5595621ef26b9"
+  integrity sha512-603BddQMv3pUcr4U2dhujk83N2tTDVr/34wII2B6bJy6g+8WD6yUb11jszNs0gdi4PesVWl7ABt8nYMVpnLUcg==
   dependencies:
     undici-types ">=7.24.0 <7.24.7"
 
@@ -4755,10 +4755,10 @@ ora@^8.1.0:
     string-width "^7.2.0"
     strip-ansi "^7.1.0"
 
-ovsx@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ovsx/-/ovsx-1.0.0.tgz#dcc694e5b1b60c920264896497dcae44c81a0daa"
-  integrity sha512-bDxwb55DNbybe10chWlnofj6ZJuER1LjFaQKUtUL9SW8l9P5Vqn7LfI23IFtmtuSJ82pYX0R+MisomXPKNGR9A==
+ovsx@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ovsx/-/ovsx-1.0.1.tgz#2e446f699ff1cc4ab7f4cdac4c843bc8c0edb09d"
+  integrity sha512-dNIVv/33z/wURvH1wAw2PRicVM5CdQB3BRL3WhEeFEFMDUkKoujlBPpqMr/meIpf4xDYUEfRwFRBiDzs38vQvw==
   dependencies:
     "@vscode/vsce" "^3.7.1"
     commander "^6.2.1"
@@ -4987,10 +4987,10 @@ prettier-linter-helpers@^1.0.1:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^3.8.3:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.8.3.tgz#560f2de55bf01b4c0503bc629d5df99b9a1d09b0"
-  integrity sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==
+prettier@^3.8.4:
+  version "3.8.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.8.4.tgz#f334f013ac04a96676f24dabc23c1c4ae1bae411"
+  integrity sha512-N2MylSdi48+5N/6S5j+maeHbUSIzzZ5uOcX5Hm4QpV8Dkb1HFjfAKTKX6yNPJQD9AhcT3ifHNB66tWTTJDi11Q==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
