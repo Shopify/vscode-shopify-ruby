@@ -1,6 +1,16 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# In-repo branches (e.g. Dependabot's) would otherwise trigger an identical run
+# for both the push and the pull_request event. Those duplicates race each other
+# for the VS Code download, which has caused throttling failures.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
