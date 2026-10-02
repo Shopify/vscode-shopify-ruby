@@ -34,3 +34,6 @@ jobs:
       - run: yarn run test
         env:
           DISPLAY: ":99.0"
+
+      - name: Package extension
+        run: yarn run package
