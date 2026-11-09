@@ -57,7 +57,7 @@
     "ws": ">= 7.4.6"
   },
   "devDependencies": {
-    "@babel/core": "^8.0.10",
+    "@babel/core": "^8.1.0",
     "@eslint/eslintrc": "^3.3.7",
     "@eslint/js": "^10.0.1",
     "@shopify/eslint-plugin": "^48.0.2",
